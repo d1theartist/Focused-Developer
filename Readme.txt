@@ -1,0 +1,1 @@
+This project will be a fully functional responsive website for the purpose of demonstrating my web development abilities, and showcasing my software development skillset.
