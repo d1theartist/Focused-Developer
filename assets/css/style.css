@@ -3,11 +3,31 @@ body {
 	font-family: serif;
 } 
 
+footer {
+	background-color: green;
+	clear: both;
+}
+
+#searchbar {
+	height: 40px;
+	background-color: gray;
+	text-align: center;
+	padding-top: 4px;
+}
+
+.borderone {
+	border: 1px solid black;
+}
+
 @media screen and (min-width: 480px) {
 	#primary {
+		width: 60%;
 		background-color: red;
+		float: left;
 	}
 	#secondary {
+		width: 35%;
 		background-color: blue;
+		float: right;
 	}
 }
