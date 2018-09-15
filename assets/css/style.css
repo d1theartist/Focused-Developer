@@ -1,0 +1,13 @@
+
+body {
+	font-family: serif;
+} 
+
+@media screen and (min-width: 480px) {
+	#primary {
+		background-color: red;
+	}
+	#secondary {
+		background-color: blue;
+	}
+}
