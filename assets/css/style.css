@@ -8,6 +8,8 @@ footer {
 	clear: both;
 }
 
+
+
 #banner {
 
 	
@@ -18,11 +20,41 @@ footer {
 	background-color: gray;
 	text-align: center;
 	padding-top: 4px;
+	clear: both;
 }
 
 .borderone {
 	border: 1px solid black;
 }
+
+nav {
+
+	padding: 10px 0 0;
+}
+
+nav ul {
+	padding: 0;
+	list-style: none;
+	margin: 0;
+}
+
+nav li {
+	display: inline-block;
+}
+
+nav a {
+	padding: 15px 10px;
+	background-color: azure;
+	text-decoration: none;
+}
+
+nav a:hover {
+	color:white;
+	background-color: darkgrey;
+}
+
+
+
 
 @media screen and (min-width: 480px) {
 	#primary {
@@ -34,5 +66,14 @@ footer {
 		width: 35%;
 		background-color: blue;
 		float: right;
+	}
+	#header div{
+		width: 45%;
+		float: left;
+	}
+	#header nav{
+		width: 50%;
+		float: right
+		text-align: right;
 	}
 }
