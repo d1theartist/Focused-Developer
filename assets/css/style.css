@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css?family=Spectral');
+
 body {
 	font-family: serif;
 } 
@@ -28,6 +30,7 @@ footer {
 }
 
 #header h1{
+	font-family: 'Spectral', serif;
 	padding: 0px;
 	margin: 0px;
 	line-height: 45px;
