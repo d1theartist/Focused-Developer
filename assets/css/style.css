@@ -46,6 +46,10 @@ footer {
 	clear: both;
 }
 
+#wrapper {
+	max-width: 1080px;
+}
+
 .borderone {
 	
 }
@@ -75,6 +79,7 @@ nav a {
 	font-weight: bold;
 }
 
+nav a.selected,
 nav a:hover {
 	color:white;
 	background-color: darkgrey;
@@ -114,6 +119,11 @@ nav a:hover {
 	#header div{
 		width: 45%;
 		float: left;
+	}
+
+	#wrapper {
+	margin: 0 auto;
+	padding: 0 4%;
 	}
 	
 }
