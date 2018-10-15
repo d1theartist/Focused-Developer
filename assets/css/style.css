@@ -3,10 +3,11 @@
 
 body {
 	font-family: serif;
+	font-weight: bolder;
 } 
 
 footer {
-	background-color: black;
+	background-color: black;  
 	color: white;
 	min-height: 60px;
 	padding: 20px;
@@ -15,7 +16,7 @@ footer {
 
 
 #header {
-	background-color: #ddd;
+	background-color: #8DDBE0;		/* color 1 */
 	border-color: black;
 	float: left;
 	width: 100%;
@@ -43,10 +44,21 @@ footer {
 
 #searchbar {
 	height: 30px;
-	background-color: gray;
+	background-color: #9BC4BC;
 	text-align: right;
 	padding: 8px 4px 0;
 	clear: both;
+}
+
+img {
+	max-width: 100%;
+}
+
+
+h2 {
+	font-size: 1.5em;
+	line-height: 0.9em;
+
 }
 
 #wrapper {
@@ -60,7 +72,7 @@ footer {
 nav {
 
 	text-align: center;
-	background-color: black;
+	background-color: #4B5043;
 	padding: 24px 10px 24px;
 }
 
@@ -76,7 +88,7 @@ nav li {
 
 nav a {
 	padding: 15px 10px;
-	background-color: #ddd;
+	background-color: #8DDBE0;		/* color 1 */
 	text-decoration: none;
 	color: black;
 	font-weight: bold;
@@ -84,8 +96,8 @@ nav a {
 
 nav a.selected,
 nav a:hover {
-	color:white;
-	background-color: darkgrey;
+	color:black;
+	background-color: #D3FFE9;  /* color 3 */
 }
 
 
@@ -93,13 +105,13 @@ nav a:hover {
 
 @media screen and (min-width: 480px) {
 	#primary {
-		width: 60%;
-		background-color: white;
+		width: 59%;
+		background-color: lightgrey;
 		float: left;
 	}
 	#secondary {
-		width: 35%;
-		background-color: darkgrey;
+		width: 38%;
+		background-color: #D3FFE9;    /* color 3 */
 		float: right;
 		padding-left: 8px;
 		padding-right: 4px;
