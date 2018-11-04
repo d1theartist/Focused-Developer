@@ -10,6 +10,10 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="assets/js/script.js"></script>
+
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 </head>
 
 <body>
@@ -20,13 +24,25 @@
 			<h1>The Focused Developer</h1>
 			<small>by Charles Johnson - Software Developer</small>
 		</div>
-		<nav class="borderone">
+		<nav class="nav-main">
 			<ul>
 
-				<li><a href="index.html">Home</a></li>
-				<li><a href="about.html">About</a></li>
-				<li><a href="prjoects.html">Projects</a></li>
-				<li><a href="contact.html">Contact</a></li>
+				<li><a href="index.html" class="nav-item">Home</a></li>
+				<li><a href="about.html" class="nav-item">About</a></li>
+				<li><a href="JavaScript:void(0)" onclick=changeVisible("drop-down1")
+				 class="nav-item">Projects</a>
+					<div id="drop-down1" class="nav-content">
+						<div class="nav-sub">
+							<ul>
+								<li><a href="#">C++</a></li>
+								<li><a href="#">Java</a></li>
+								<li><a href="#">Android</a></li>
+							</ul>
+						</div>
+					</div>
+				
+				</li>
+				<li><a href="contact.html" class="nav-item">Contact</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -65,6 +81,9 @@
 		</section>
 		<footer class="borderone"> &copy; The Focused Developer</footer>
 	</div>
+	<script>
+	changeVisible("drop-down1");
+	</script>
 </body>
 
 </html>

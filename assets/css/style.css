@@ -23,6 +23,7 @@ footer {
 	margin: 0 0 40px 0;
 	padding-top: 10px;
 	padding-left: 8px
+	padding-right: 8px;
 }
 
 #header-div{
@@ -32,9 +33,13 @@ footer {
 
 #header h1{
 	font-family: 'Spectral', serif;
-	padding: 0px;
+	padding: 4px;
 	margin: 0px;
 	line-height: 45px;
+}
+
+#header small{
+	padding: 4px;
 }
 
 #banner {
@@ -70,10 +75,9 @@ h2 {
 }
 
 nav {
-
 	text-align: center;
 	background-color: #4B5043;
-	padding: 24px 10px 24px;
+	padding: 14px 10px 14px 10px;
 }
 
 nav ul {
@@ -83,16 +87,28 @@ nav ul {
 }
 
 nav li {
-	display: inline-block;
+	position: relative;
 }
 
 nav a {
-	padding: 15px 10px;
+	display: block;
+	padding: 15px 10px 15px 10px;
 	background-color: #8DDBE0;		/* color 1 */
 	text-decoration: none;
 	color: black;
 	font-weight: bold;
 }
+
+nav > ul > li > .hidden{
+	display:none;
+}
+
+
+.nav-content{
+	
+}
+
+
 
 nav a.selected,
 nav a:hover {
@@ -100,14 +116,49 @@ nav a:hover {
 	background-color: #D3FFE9;  /* color 3 */
 }
 
+@media screen and (min-width: 375px) {
 
+	.nav-content{
+		
+		padding: 4px;
+		margin-right: 4px;
+		text-align: center;
+		position: absolute;
+		
+
+		
+	}
+
+	.nav-sub > ul> li> a{
+		float: left;
+		display: inline-block;
+		margin-top: 1px;
+		border-style: solid;
+		border-color: #4B5043;
+
+	}
+	.nav-main > ul > li{
+		display: inline-block; 
+	}
+	
+
+	nav a {
+		padding: 15px 10px 15px 10px;
+	}
+	#header nav{
+		text-align: center;
+		float: none;
+	}
+	
+}
 
 
 @media screen and (min-width: 480px) {
 	#primary {
-		width: 59%;
+		width: 58%;
 		background-color: lightgrey;
 		float: left;
+		padding-left: 4px;
 	}
 	#secondary {
 		width: 38%;
@@ -125,8 +176,10 @@ nav a:hover {
 }
 
 @media screen and (min-width: 720px) {
+	
+
 	#header nav{
-		width: 45%;
+		
 		float: right;
 		text-align: right;
 		
@@ -140,5 +193,6 @@ nav a:hover {
 	margin: 0 auto;
 	padding: 0 4%;
 	}
+
 	
 }
