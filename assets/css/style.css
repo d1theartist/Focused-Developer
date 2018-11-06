@@ -151,8 +151,52 @@ nav a:hover {
     margin-right: auto;
 }
 
+#form-wrapper{
+	max-width: 700px;
+}
+
+#contact-form{
+	text-align: center;
+	background-color: lightgrey;
+	padding-left: 8px;
+	padding-right: 8px;
+	min-height: 500px;
+	margin: auto;
+	padding-top: 1px;
+	
+
+}
+
+
+
+
+#subject, #name, #email{
+	width: 96%;
+	margin-bottom: 10px;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+#message{
+	width: 96%;
+	height: 200px;
+	margin: 8px;
+}
+
 
 @media screen and (min-width: 375px) {
+
+	#name{
+		margin-left: 6px;
+		float: left;
+		width: 44%;
+	}
+
+	#email{
+		margin-right: 6px;
+		float: right;
+		width: 44%;
+	}
 
 	.nav-content{
 		
@@ -188,6 +232,14 @@ nav a:hover {
 
 
 @media screen and (min-width: 480px) {
+
+	#name{
+		margin-left: 14px;
+	}
+
+	#email{
+		margin-right: 14px;
+	}
 
 	#primary {
 		width: 58%;
@@ -228,3 +280,5 @@ nav a:hover {
 	padding: 0 4%;
 	}
 }
+
+ 
