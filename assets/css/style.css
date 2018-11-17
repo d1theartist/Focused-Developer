@@ -50,7 +50,7 @@ footer {
 #searchbar {
 	height: 30px;
 	background-color: #9BC4BC;
-	text-align: right;
+	text-align: center;
 	padding: 8px 4px 0;
 	clear: both;
 }
@@ -186,6 +186,10 @@ nav a:hover {
 
 @media screen and (min-width: 375px) {
 
+	#searchbar {
+		text-align: right;
+	}
+
 	#name{
 		margin-left: 6px;
 		float: left;
@@ -242,17 +246,18 @@ nav a:hover {
 	}
 
 	#primary {
-		width: 58%;
+		width: 64%;
 		background-color: lightgrey;
 		float: left;
 		padding-left: 4px;
 	}
 	#secondary {
-		width: 38%;
+		width: 33%;
 		background-color: #D3FFE9;    /* color 3 */
-		float: right;
+		float: left;
 		padding-left: 4px;
 		padding-right: 4px;
+
 	}
 	
 	#header nav{
