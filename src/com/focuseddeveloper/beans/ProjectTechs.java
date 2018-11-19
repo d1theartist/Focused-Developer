@@ -9,7 +9,9 @@ public class ProjectTechs {
 	private String highlights[][];
 
 	public ProjectTechs() {
-		
+		title = "C++ Projects";
+		subtitle = "Testing... The Foundation";
+		summary = "C++ is the first object oriented programming languaged that I studied.";
 	}
 	
 	public String getTitle() {

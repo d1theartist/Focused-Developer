@@ -55,10 +55,12 @@
 
 
 	<!-- main content -->
+	<jsp:useBean id="projectTechs" class="com.focuseddeveloper.beans.ProjectTechs" scope="session"></jsp:useBean>
+	
 	<div id="wrapper">
 		<section id="content-primary" class="borderone">
-			<h2 id="page-title">C++</h2>
-			<h4 id="subtitle">The Foundation</h4>
+			<h2 id="page-title"><jsp:getProperty property="title" name="projectTechs"/></h2>
+			<h4 id="subtitle"><jsp:getProperty property="subtitle" name="projectTechs"/></h4>
 			<hr id="title-line"> 
 			<br>
 			<img id="title-image" src="https://picsum.photos/600/200"/>
