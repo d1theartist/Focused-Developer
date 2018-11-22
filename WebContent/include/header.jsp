@@ -28,8 +28,8 @@
 		<nav class="nav-main">
 			<ul>
 
-				<li><a href="index.html" class="nav-item">Home</a></li>
-				<li><a href="about.html" class="nav-item">About</a></li>
+				<li><a href=${pageContext.request.contextPath}/home?page=home class="nav-item">Home</a></li>
+				<li><a href=${pageContext.request.contextPath}/home?page=about class="nav-item">About</a></li>
 				<li><a href="JavaScript:void(0)" onclick=changeVisible("drop-down1")
 				 class="nav-item">Projects</a>
 					<div id="drop-down1" class="nav-content">
@@ -43,7 +43,7 @@
 					</div>
 				
 				</li>
-				<li><a href="contact.html" class="nav-item">Contact</a></li>
+				<li><a href=${pageContext.request.contextPath}/home?page=contact class="nav-item">Contact</a></li>
 			</ul>
 		</nav>
 	</header>
