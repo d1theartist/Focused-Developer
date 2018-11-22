@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <head>
 	<meta charset="utf-8">
@@ -34,7 +35,7 @@
 					<div id="drop-down1" class="nav-content">
 						<div class="nav-sub">
 							<ul>
-								<li><a href="projects/c.html">C++</a></li>
+								<li><a href=${pageContext.request.contextPath}/projects?page=c>C++</a></li>
 								<li><a href="#">Java</a></li>
 								<li><a href="#">Android</a></li>
 							</ul>

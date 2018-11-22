@@ -15,7 +15,7 @@ import com.focuseddeveloper.beans.ProjectTech;
 /**
  * Servlet implementation class ServeProjectTechs
  */
-@WebServlet(description = "Serves the projects to the appropriate jsp pages", urlPatterns = { "/projects/" })
+@WebServlet(description = "Serves the projects to the appropriate jsp pages", urlPatterns = { "/projects" })
 public class ServeProjectTechs extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,13 +39,23 @@ public class ServeProjectTechs extends HttpServlet {
 		
 		request.setAttribute("projectTech", projTech);
 		
+		String page = request.getParameter("page");
+		page = page.toLowerCase();
+
+		switch (page) {
+		
+		case "c":
+			request.getRequestDispatcher("c.jsp").forward(request, response);
+			break;
+		default: 
+			request.getRequestDispatcher("error.jsp").forward(request, response);
+		}
+		
 
 	    RequestDispatcher dispatcher = request.getRequestDispatcher("/projects/c.jsp");
 	    dispatcher.forward(request, response);
 		
 		
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
