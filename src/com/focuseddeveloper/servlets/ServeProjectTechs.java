@@ -49,12 +49,7 @@ public class ServeProjectTechs extends HttpServlet {
 			break;
 		default: 
 			request.getRequestDispatcher("error.jsp").forward(request, response);
-		}
-		
-
-	    RequestDispatcher dispatcher = request.getRequestDispatcher("/projects/c.jsp");
-	    dispatcher.forward(request, response);
-		
+		}		
 		
 	}
 

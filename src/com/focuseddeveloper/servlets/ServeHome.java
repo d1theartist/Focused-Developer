@@ -29,26 +29,27 @@ public class ServeHome extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
-		page = page.toLowerCase();
 
 		switch (page) {
 		
 		case "home":
+			request.setAttribute("title", "Homepage");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			break;
 		case "about":
+			request.setAttribute("title", "About");
 			request.getRequestDispatcher("about.jsp").forward(request, response);
 			break;
 		case "contact":
+			request.setAttribute("title", "Contact");
 			request.getRequestDispatcher("contact.jsp").forward(request, response);
 			break;
 		default: 
+			request.setAttribute("title", "Not Found");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 		
 
-	    RequestDispatcher dispatcher = request.getRequestDispatcher("/projects/c.jsp");
-	    dispatcher.forward(request, response);
 	}
 
 	/**

@@ -6,7 +6,15 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Focused Developer</title>
+	<title><% 
+    if( request.getAttribute("title") == null){
+        out.print("Homepage");
+    }else{
+    	out.print(request.getAttribute("title"));
+    }
+	
+	//alert(page);
+    %></title>
 	<link rel="stylesheet" href="assets/css/style.css">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -14,6 +22,7 @@
 
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 
 </head>
 
@@ -23,7 +32,7 @@
 	<header id="header">
 		<div class="borderone">
 			<h1>The Focused Developer</h1>
-			<small>by Charles Johnson - Software Developer</small>
+			<small>by Charles Johnson - Software Developer</small></br>
 		</div>
 		<nav class="nav-main">
 			<ul>
