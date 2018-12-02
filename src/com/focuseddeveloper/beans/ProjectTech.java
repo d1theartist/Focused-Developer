@@ -19,6 +19,12 @@ public class ProjectTech {
 		
 	}
 	
+	public ProjectTech(String title, String subtitle, String summary) {
+		this.title = title;
+		this.subtitle = subtitle;
+		this.summary = summary;
+	}
+	
 	public String getTitle() {
 		return title;
 	}

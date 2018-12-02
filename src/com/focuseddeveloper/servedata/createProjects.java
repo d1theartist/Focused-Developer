@@ -18,7 +18,7 @@ public class createProjects {
 	static private String summaryExample = "This is a summary of what the project.  I include the basic functionality of the project, and discuss what"
 			+ " I found interesting and challenging about the project.";
 
-	static private ArrayList<Project> techList = new ArrayList<Project>();
+	static private ArrayList<Project> projectList = new ArrayList<Project>();
 	
 	static private ArrayList<String> tagsExample = new ArrayList<String>();
 	
@@ -34,14 +34,18 @@ public class createProjects {
 		tagsExample.add("tools 1");
 		tagsExample.add("tools 2");
 		
-		techList.add( new Project(c,"Battleship",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
-		techList.add( new Project(c,"Video Store",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
-		techList.add( new Project(java,"Focused Developer Site",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
-		techList.add( new Project(java,"Business Transactions",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
-		techList.add( new Project(android,"Abstract News",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
-		techList.add( new Project(android,"Popular Movies",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
-		techList.add( new Project(android,"Build it Bigger",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
+		projectList.add( new Project(c,"Battleship",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
+		projectList.add( new Project(c,"Video Store",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
+		projectList.add( new Project(java,"Focused Developer Site",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
+		projectList.add( new Project(java,"Business Transactions",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
+		projectList.add( new Project(android,"Abstract News",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
+		projectList.add( new Project(android,"Popular Movies",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
+		projectList.add( new Project(android,"Build it Bigger",subTitleExample,summaryExample, keyFeaturesExample, urlStringExample, tagsExample) );
 		
+	}
+	
+	public static ArrayList getProjects() {
+		return projectList;
 	}
 	
 
