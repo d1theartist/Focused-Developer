@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.focuseddeveloper.beans.Project;
 import com.focuseddeveloper.beans.ProjectTech;
+import com.focuseddeveloper.servedata.createProjectTechs;
+import com.focuseddeveloper.servedata.createProjects;
 
 /**
  * Servlet implementation class ServeProjectTechs
@@ -36,8 +38,21 @@ public class ServeProjectTechs extends HttpServlet {
 		// TBD: get techList from ProjectData class
 		// in prep for flexibility and incoming database
 		ArrayList<ProjectTech> techList = new ArrayList<ProjectTech>();
+		createProjectTechs pt = new createProjectTechs();
+		
+		ArrayList<Project> projects = new ArrayList<Project>();
+		createProjects pj = new createProjects();
+		
+		techList = pt.getTechList();
+		projects = pj.getProjects();
+		
+		for(ProjectTech projTech : techList) {
+			System.out.println("Project Title: "+projTech.getTitle());
+		}
+		
 		
 		ProjectTech projTech = new ProjectTech();
+		/*
 		Project project1 = new Project();
 		Project project2 = new Project();
 		
@@ -49,6 +64,7 @@ public class ServeProjectTechs extends HttpServlet {
 		projTech.addProject(project1);
 		projTech.addProject(project2);
 		request.setAttribute("projectTech", projTech);
+		*/
 		
 		String page = request.getParameter("page");
 		page = page.toLowerCase();
@@ -56,11 +72,48 @@ public class ServeProjectTechs extends HttpServlet {
 		switch (page) {
 		
 		case "c":
+			projTech = retrieveTech(techList, createProjectTechs.C);
+			retrieveProjects(projects,projTech);
+			request.setAttribute("projectTech", projTech);
+			request.setAttribute("title", "C++ Projects");
+			request.getRequestDispatcher("techs.jsp").forward(request, response);
+			break;
+		case "java":
+			projTech = retrieveTech(techList, createProjectTechs.JAVA);
+			retrieveProjects(projects,projTech);
+			request.setAttribute("projectTech", projTech);
+			request.setAttribute("title", "Java Projects");
+			request.getRequestDispatcher("techs.jsp").forward(request, response);
+			break;
+		case "android":
+			projTech = retrieveTech(techList, createProjectTechs.ANDROID);
+			retrieveProjects(projects,projTech);
+			request.setAttribute("projectTech", projTech);
+			request.setAttribute("title", "Android Projects");
 			request.getRequestDispatcher("techs.jsp").forward(request, response);
 			break;
 		default: 
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}		
+		
+	}
+	
+	private ProjectTech retrieveTech(ArrayList<ProjectTech> techs, String techName) {
+		for(ProjectTech projTech : techs) {
+			if( projTech.getTitle().equals(techName) ) {
+				return projTech;
+			}
+		}
+		return null;
+	}
+	
+	private void retrieveProjects(ArrayList<Project> allProjects, ProjectTech projtech){
+		for(Project proj: allProjects) {
+			if( proj.getPrimaryProjectTech().equals(projtech.getTitle()) ) {
+				projtech.addProject(proj);
+			}
+		}
+		
 		
 	}
 	

@@ -8,7 +8,7 @@ import com.focuseddeveloper.beans.ProjectTech;
 public class ProjectData {
 
 	private ArrayList<ProjectTech> techList = new ArrayList<ProjectTech>();
-	ArrayList<String> techs = new ArrayList<String>();
+	private ArrayList<String> techs = new ArrayList<String>();
 	
 	public ArrayList<ProjectTech> getTechList() {
 		

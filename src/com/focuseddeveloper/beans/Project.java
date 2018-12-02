@@ -11,7 +11,7 @@ public class Project {
 	
 	private String urlString;
 	
-	private ArrayList<String> tags;
+	private ArrayList<String> tags = new ArrayList<String>();
 	
 	//private String[][] keyFeatures = { {"Feature 1","This is Awesome"},{"Feature 2","Amazing!!!"},{"Feature 3","Wait... there's more!"} };
 	private ArrayList<String[]> keyFeatures = new ArrayList<String[]>(); 

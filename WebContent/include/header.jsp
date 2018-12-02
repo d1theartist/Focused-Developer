@@ -45,8 +45,8 @@
 						<div class="nav-sub">
 							<ul>
 								<li><a href=${pageContext.request.contextPath}/projects?page=c>C++</a></li>
-								<li><a href="#">Java</a></li>
-								<li><a href="#">Android</a></li>
+								<li><a href=${pageContext.request.contextPath}/projects?page=java>Java</a></li>
+								<li><a href=${pageContext.request.contextPath}/projects?page=android>Android</a></li>
 							</ul>
 						</div>
 					</div>
