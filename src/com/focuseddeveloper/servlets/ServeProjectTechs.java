@@ -1,6 +1,7 @@
 package com.focuseddeveloper.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,11 +33,21 @@ public class ServeProjectTechs extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// TBD: get techList from ProjectData class
+		// in prep for flexibility and incoming database
+		ArrayList<ProjectTech> techList = new ArrayList<ProjectTech>();
+		
 		ProjectTech projTech = new ProjectTech();
 		Project project1 = new Project();
+		Project project2 = new Project();
+		
+		project2.setTitle("Movie Store");
+		project2.setSubtitle("movie subtitle");
+		project2.setSummary("afkfaklmffoejowjgkdakldjsvlajfd adjo joajf aodjf jaojfa joajdfioajf osjfoajo jajfaos foiajfoajoifajsodf jaoisffjoaijfo jfiajfoa dfjaoijsfo ajsodf joifdjaosjfdaj");
+		project2.setKeyFeatures(project1.getKeyFeatures() );
 		
 		projTech.addProject(project1);
-		
+		projTech.addProject(project2);
 		request.setAttribute("projectTech", projTech);
 		
 		String page = request.getParameter("page");
@@ -45,13 +56,15 @@ public class ServeProjectTechs extends HttpServlet {
 		switch (page) {
 		
 		case "c":
-			request.getRequestDispatcher("c.jsp").forward(request, response);
+			request.getRequestDispatcher("techs.jsp").forward(request, response);
 			break;
 		default: 
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}		
 		
 	}
+	
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
