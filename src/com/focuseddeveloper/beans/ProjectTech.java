@@ -8,6 +8,8 @@ public class ProjectTech {
 	private String subtitle;
 	private String summary;
 	
+	private String webTitle;
+	
 
 	private ArrayList<Project> projectsList = new ArrayList<Project>();
 
@@ -17,12 +19,15 @@ public class ProjectTech {
 		summary = "C++ is the first object oriented programming languaged that I studied.  Luckily for me, many of the technologies in use today are based on the C languages.  My first few projects were small"
 				+ "blah blah blah....";
 		
+		setWebTitle();
+		
 	}
 	
 	public ProjectTech(String title, String subtitle, String summary) {
 		this.title = title;
 		this.subtitle = subtitle;
 		this.summary = summary;
+		setWebTitle();
 	}
 	
 	public String getTitle() {
@@ -60,6 +65,18 @@ public class ProjectTech {
 	public void addProject(Project newProject)
 	{
 	       this.projectsList.add(newProject);
+	}
+	
+	public String getWebTitle() {
+		return webTitle;
+	}
+
+	public void setWebTitle(String webTitle) {
+		this.webTitle = title.replaceAll(" ","-");
+	}
+	
+	public void setWebTitle() {
+		this.webTitle = title.toLowerCase().replaceAll(" ","-").replaceAll("[^a-zA-Z0-9_-]", "");
 	}
 	
 

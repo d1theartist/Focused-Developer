@@ -16,6 +16,7 @@ public class Project {
 	//private String[][] keyFeatures = { {"Feature 1","This is Awesome"},{"Feature 2","Amazing!!!"},{"Feature 3","Wait... there's more!"} };
 	private ArrayList<String[]> keyFeatures = new ArrayList<String[]>(); 
 	
+	private String webTitle;
 	
 	public Project() {
 		primaryProjectTech = "C++";
@@ -31,6 +32,7 @@ public class Project {
 		tags.add("Language 1");
 		tags.add("tools 1");
 		tags.add("tools 2");
+		setWebTitle();
 	}
 	
 	public Project(String primaryProjectTech, String title, String subtitle, String summary, ArrayList<String[]> keyFeatures, String urlString, ArrayList<String> tags) {
@@ -42,6 +44,7 @@ public class Project {
 		this.keyFeatures = keyFeatures;
 		this.urlString = urlString;
 		this.tags = tags;
+		setWebTitle();
 	}
 
 
@@ -109,6 +112,18 @@ public class Project {
 	
 	public void addTag(String tag) {
 		tags.add(tag);
+	}
+
+	public String getWebTitle() {
+		return webTitle;
+	}
+
+	public void setWebTitle(String webTitle) {
+		this.webTitle = title.replaceAll(" ","-");
+	}
+	
+	public void setWebTitle() {
+		this.webTitle = title.toLowerCase().replaceAll(" ","-");
 	}
 
 }

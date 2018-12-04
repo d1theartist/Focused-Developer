@@ -38,6 +38,7 @@
 					<li>${feature[0]}, ${feature[1]}
 					</c:forEach>
 				</ul>
+				<a href=${pageContext.request.contextPath}/project?page=${project.webTitle} >Click here to learn more.</a>
 			
 			</c:forEach>
 			

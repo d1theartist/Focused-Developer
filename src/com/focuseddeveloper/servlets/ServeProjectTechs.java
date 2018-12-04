@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.focuseddeveloper.beans.Project;
 import com.focuseddeveloper.beans.ProjectTech;
-import com.focuseddeveloper.servedata.createProjectTechs;
-import com.focuseddeveloper.servedata.createProjects;
+import com.focuseddeveloper.servedata.CreateProjectTechs;
+import com.focuseddeveloper.servedata.CreateProjects;
 
 /**
  * Servlet implementation class ServeProjectTechs
  */
-@WebServlet(description = "Serves the projects to the appropriate jsp pages", urlPatterns = { "/projects" })
+@WebServlet(description = "Serves the projects to the appropriate jsp pages", urlPatterns = { "/techs" })
 public class ServeProjectTechs extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,73 +38,44 @@ public class ServeProjectTechs extends HttpServlet {
 		// TBD: get techList from ProjectData class
 		// in prep for flexibility and incoming database
 		ArrayList<ProjectTech> techList = new ArrayList<ProjectTech>();
-		createProjectTechs pt = new createProjectTechs();
+		CreateProjectTechs pt = new CreateProjectTechs();
 		
 		ArrayList<Project> projects = new ArrayList<Project>();
-		createProjects pj = new createProjects();
+		CreateProjects pj = new CreateProjects();
 		
 		techList = pt.getTechList();
 		projects = pj.getProjects();
-		
-		for(ProjectTech projTech : techList) {
-			System.out.println("Project Title: "+projTech.getTitle());
-		}
-		
+			
 		
 		ProjectTech projTech = new ProjectTech();
-		/*
-		Project project1 = new Project();
-		Project project2 = new Project();
 		
-		project2.setTitle("Movie Store");
-		project2.setSubtitle("movie subtitle");
-		project2.setSummary("afkfaklmffoejowjgkdakldjsvlajfd adjo joajf aodjf jaojfa joajdfioajf osjfoajo jajfaos foiajfoajoifajsodf jaoisffjoaijfo jfiajfoa dfjaoijsfo ajsodf joifdjaosjfdaj");
-		project2.setKeyFeatures(project1.getKeyFeatures() );
-		
-		projTech.addProject(project1);
-		projTech.addProject(project2);
-		request.setAttribute("projectTech", projTech);
-		*/
 		
 		String page = request.getParameter("page");
 		page = page.toLowerCase();
-
-		switch (page) {
 		
-		case "c":
-			projTech = retrieveTech(techList, createProjectTechs.C);
-			retrieveProjects(projects,projTech);
+		projTech = retrieveTech(techList, page);
+		
+		retrieveProjects(projects,projTech);
+
+		if(projTech != null) {
 			request.setAttribute("projectTech", projTech);
-			request.setAttribute("title", "C++ Projects");
+			request.setAttribute("title",projTech.getTitle() );
 			request.getRequestDispatcher("techs.jsp").forward(request, response);
-			break;
-		case "java":
-			projTech = retrieveTech(techList, createProjectTechs.JAVA);
-			retrieveProjects(projects,projTech);
-			request.setAttribute("projectTech", projTech);
-			request.setAttribute("title", "Java Projects");
-			request.getRequestDispatcher("techs.jsp").forward(request, response);
-			break;
-		case "android":
-			projTech = retrieveTech(techList, createProjectTechs.ANDROID);
-			retrieveProjects(projects,projTech);
-			request.setAttribute("projectTech", projTech);
-			request.setAttribute("title", "Android Projects");
-			request.getRequestDispatcher("techs.jsp").forward(request, response);
-			break;
-		default: 
+		}else {
 			request.getRequestDispatcher("error.jsp").forward(request, response);
-		}		
+		}
 		
 	}
 	
 	private ProjectTech retrieveTech(ArrayList<ProjectTech> techs, String techName) {
+		ProjectTech myTech = null;
 		for(ProjectTech projTech : techs) {
-			if( projTech.getTitle().equals(techName) ) {
-				return projTech;
+			if( projTech.getWebTitle().equals(techName) ) {
+				myTech = new ProjectTech();
+				myTech = projTech;
 			}
 		}
-		return null;
+		return myTech;
 	}
 	
 	private void retrieveProjects(ArrayList<Project> allProjects, ProjectTech projtech){
@@ -113,8 +84,6 @@ public class ServeProjectTechs extends HttpServlet {
 				projtech.addProject(proj);
 			}
 		}
-		
-		
 	}
 	
 

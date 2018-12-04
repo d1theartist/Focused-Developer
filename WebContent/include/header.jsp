@@ -44,9 +44,9 @@
 					<div id="drop-down1" class="nav-content">
 						<div class="nav-sub">
 							<ul>
-								<li><a href=${pageContext.request.contextPath}/projects?page=c>C++</a></li>
-								<li><a href=${pageContext.request.contextPath}/projects?page=java>Java</a></li>
-								<li><a href=${pageContext.request.contextPath}/projects?page=android>Android</a></li>
+								<li><a href=${pageContext.request.contextPath}/techs?page=c>C++</a></li>
+								<li><a href=${pageContext.request.contextPath}/techs?page=java>Java</a></li>
+								<li><a href=${pageContext.request.contextPath}/techs?page=android>Android</a></li>
 							</ul>
 						</div>
 					</div>

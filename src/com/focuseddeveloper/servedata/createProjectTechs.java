@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.focuseddeveloper.beans.ProjectTech;
 
-public class createProjectTechs {
+public class CreateProjectTechs {
 	
 	private ArrayList<ProjectTech> techList = new ArrayList<ProjectTech>();
 	
@@ -17,7 +17,7 @@ public class createProjectTechs {
 	static private String summaryExample = "Brief description of the language.  I'll give my general thoughts on what I like to use it for.  Perhaps even "
 			+ "discuss how and why I decided to get started with this particular tech.";
 	
-	public createProjectTechs()
+	public CreateProjectTechs()
 	{
 		techList.add(new ProjectTech(C,subTitleExample,summaryExample) );
 		techList.add(new ProjectTech(JAVA,subTitleExample,summaryExample) );

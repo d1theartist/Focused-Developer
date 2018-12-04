@@ -3,15 +3,14 @@ package com.focuseddeveloper.servedata;
 import java.util.ArrayList;
 
 import com.focuseddeveloper.beans.Project;
-import com.focuseddeveloper.beans.ProjectTech;
 
-public class createProjects {
+public class CreateProjects {
 	
 	private ArrayList<String[]> keyFeaturesExample = new ArrayList<String[]>(); 
 	
-	static private String C = createProjectTechs.C;
-	static private String JAVA = createProjectTechs.JAVA;
-	static private String ANDROID =createProjectTechs.ANDROID;
+	static private String C = CreateProjectTechs.C;
+	static private String JAVA = CreateProjectTechs.JAVA;
+	static private String ANDROID =CreateProjectTechs.ANDROID;
 	
 	static private String subTitleExample = "subtitles are cool!";
 	
@@ -24,7 +23,7 @@ public class createProjects {
 	
 	private String urlStringExample = "https://github.com/"; 
 		
-	public createProjects()
+	public CreateProjects()
 	 {
 		keyFeaturesExample.add(new String[] {"Feature 1","This is Awesome"});
 		keyFeaturesExample.add(new String[] {"Feature 2","Amazing!!!"});
@@ -44,7 +43,7 @@ public class createProjects {
 		
 	}
 	
-	public ArrayList getProjects() {
+	public ArrayList<Project> getProjects() {
 		return projectList;
 	}
 	
