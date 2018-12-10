@@ -29,6 +29,7 @@ public class ServeHome extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
+		System.out.println("In Home doGet");
 
 		switch (page) {
 		

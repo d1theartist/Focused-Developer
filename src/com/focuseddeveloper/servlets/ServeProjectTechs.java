@@ -3,6 +3,7 @@ package com.focuseddeveloper.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,16 +35,23 @@ public class ServeProjectTechs extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("In ServeProjectTechs DOGET BABY!");
 		// TBD: get techList from ProjectData class
 		// in prep for flexibility and incoming database
 		ArrayList<ProjectTech> techList = new ArrayList<ProjectTech>();
-		CreateProjectTechs pt = new CreateProjectTechs();
+		CreateProjectTechs pt;
+		try {
+			pt = new CreateProjectTechs();
+			techList = pt.getTechList();
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		ArrayList<Project> projects = new ArrayList<Project>();
 		CreateProjects pj = new CreateProjects();
 		
-		techList = pt.getTechList();
+		
 		projects = pj.getProjects();
 			
 		
