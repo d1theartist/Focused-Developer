@@ -49,10 +49,10 @@ public class ServeProjectTechs extends HttpServlet {
 		}
 		
 		ArrayList<Project> projects = new ArrayList<Project>();
-		CreateProjects pj = new CreateProjects();
+		//CreateProjects pj = new CreateProjects();
 		
 		
-		projects = pj.getProjects();
+		//projects = pj.getProjects();
 			
 		
 		ProjectTech projTech = new ProjectTech();
@@ -63,7 +63,7 @@ public class ServeProjectTechs extends HttpServlet {
 		
 		projTech = retrieveTech(techList, page);
 		
-		retrieveProjects(projects,projTech);
+		//retrieveProjects(projects,projTech);
 
 		if(projTech != null) {
 			request.setAttribute("projectTech", projTech);

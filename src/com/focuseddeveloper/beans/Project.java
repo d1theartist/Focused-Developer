@@ -35,15 +35,12 @@ public class Project {
 		setWebTitle();
 	}
 	
-	public Project(String primaryProjectTech, String title, String subtitle, String summary, ArrayList<String[]> keyFeatures, String urlString, ArrayList<String> tags) {
+	public Project(String primaryProjectTech, String title, String subtitle, String summary, String urlString) {
 		this.primaryProjectTech = primaryProjectTech;
 		this.title = title;
 		this.subtitle = subtitle;
 		this.summary = summary;
-		
-		this.keyFeatures = keyFeatures;
 		this.urlString = urlString;
-		this.tags = tags;
 		setWebTitle();
 	}
 

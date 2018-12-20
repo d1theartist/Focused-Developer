@@ -16,11 +16,12 @@ public class DB_Helper {
 	public static final String WEB_TITLE = "web_title";
 	public static final String PROJECT_TECH_ID = "project_tech_id";
 	
-	public static final String PROJECT_TABLE = "";
+	public static final String PROJECT_TABLE = "projects";
 	public static final String URL_STRING = "url_string";
 	public static final String PROJECT_ID = "project_id";
+	public static final String PRIMARY_TECH = "projecttech_title";
 	
-	public static final String KEY_FEATURES_TABLE = "";
+	public static final String KEY_FEATURES_TABLE = "key_features";
 	public static final String FEATURE_NAME = "feature_name";
 	public static final String FEATURE_DESC = "feature_desc";
 	public static final String FEATURE_ID = "feature_id";
