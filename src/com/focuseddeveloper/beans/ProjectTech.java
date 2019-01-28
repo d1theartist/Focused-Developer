@@ -10,6 +10,7 @@ public class ProjectTech {
 	
 	private String webTitle;
 	
+	private String imagePath;
 
 	private ArrayList<Project> projectsList = new ArrayList<Project>();
 
@@ -23,12 +24,22 @@ public class ProjectTech {
 		
 	}
 	
-	public ProjectTech(String title, String subtitle, String summary) {
+	public ProjectTech(String title, String subtitle, String summary, String imagePath) {
 		this.title = title;
 		this.subtitle = subtitle;
 		this.summary = summary;
+		this.imagePath = imagePath;
 		setWebTitle();
 	}
+	
+	public String getImagePath() {
+		return imagePath;
+	}
+	
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	
 	
 	public String getTitle() {
 		return title;
