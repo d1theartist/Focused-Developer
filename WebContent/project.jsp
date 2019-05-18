@@ -23,7 +23,8 @@
 			<h4 id="subtitle">${project.subtitle}</h4>
 			<hr id="title-line"> 
 			<br>
-			<img id="title-image" src="https://picsum.photos/600/200"/>
+			<img id="title-image" src="${pageContext.request.contextPath}/${project.imagePath}" />
+			<!--   img id="title-image" src="https://picsum.photos/600/200"/ -->
 			<br>
 
 			<p id=title-summary>${project.summary}</p>

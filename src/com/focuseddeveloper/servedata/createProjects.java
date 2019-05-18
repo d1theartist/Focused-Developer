@@ -64,8 +64,10 @@ public class CreateProjects {
 				System.out.println("Title: "+title);
 				
 				//String title = rs.getString(DB_Helper.TITLE);
-				Project project = new Project(primaryTech,title,subtitle,summary,urlString);
-				//(String primaryProjectTech, String title, String subtitle, String summary, String urlString)
+				
+				Project project = new Project(primaryTech,title,subtitle,summary,urlString,"image");
+				
+				// public Project(String primaryProjectTech, String title, String subtitle, String summary, String urlString, String imagePath)
 				
 				//Get Key Features
 				sql = "SELECT feature_name, featue_desc FROM "

@@ -40,7 +40,7 @@ public class CreateProjectTechs {
 			+ "discuss how and why I decided to get started with this particular tech. Testing!";
 	
 	static private String dataQuery = "SELECT technologies.tech_id, technologies.title as tech_title, technologies.subtitle as tech_subtitle, technologies.summary as tech_summary, technologies.tech_image as tech_image,\r\n" + 
-			"projects.project_id, projects.title as proj_title, projects.subtitle as proj_subtitle,\r\n" + 
+			"projects.project_id, projects.title as proj_title, projects.subtitle as proj_subtitle, projects.summary as proj_summary, projects.project_image as proj_image,\r\n" + 
 			"feature_name, key_features.feature_desc\r\n" + 
 			"from technologies left outer join projects on technologies.tech_id = projects.tech_id \r\n" + 
 			"left outer join key_features on projects.project_id = key_features.project_id";
@@ -99,7 +99,7 @@ public class CreateProjectTechs {
 				
 				currentProj = results.getInt("project_id");
 				if(currentProj != prevProj) {
-					newProject = new Project(results.getString("tech_title"), results.getString("proj_title"), results.getString("proj_subtitle"), "Sample Summary goes here!", "githut.com");
+					newProject = new Project(results.getString("tech_title"), results.getString("proj_title"), results.getString("proj_subtitle"), results.getString("proj_summary"), "githut.com", results.getString("proj_image"));
 					projList.add(newProject);
 					newProjectTech.addProject(newProject);
 				}

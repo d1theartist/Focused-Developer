@@ -11,6 +11,8 @@ public class Project {
 	
 	private String urlString;
 	
+	private String imagePath;
+	
 	private ArrayList<String> tags = new ArrayList<String>();
 	
 	//private String[][] keyFeatures = { {"Feature 1","This is Awesome"},{"Feature 2","Amazing!!!"},{"Feature 3","Wait... there's more!"} };
@@ -35,13 +37,22 @@ public class Project {
 		setWebTitle();
 	}
 	
-	public Project(String primaryProjectTech, String title, String subtitle, String summary, String urlString) {
+	public Project(String primaryProjectTech, String title, String subtitle, String summary, String urlString, String imagePath) {
 		this.primaryProjectTech = primaryProjectTech;
 		this.title = title;
 		this.subtitle = subtitle;
 		this.summary = summary;
 		this.urlString = urlString;
+		this.imagePath = imagePath;
 		setWebTitle();
+	}
+	
+	public String getImagePath() {
+		return imagePath;
+	}
+	
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 
