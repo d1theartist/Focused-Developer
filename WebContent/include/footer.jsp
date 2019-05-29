@@ -6,7 +6,7 @@
 		<li><a href=${pageContext.request.contextPath}/techs?page=android>Android</a></li>
 	</ul>
 	
- 	&copy; The Focused Developer (footer test)
+ 	&copy; The Focused Developer
  </footer>
 	</div>
 	<script>
