@@ -14,7 +14,7 @@
 
 	<!-- main content -->
 	<div id="wrapper">
-		<form action=# id="contact-form">
+		<form action="contact_form" method="post" id="contact-form">
 			<h2 id="page-title">Contact</h2>
 			<hr id="title-line"> 
 			<br>

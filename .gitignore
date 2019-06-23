@@ -3,3 +3,4 @@ ignoreme.txt
 WebContent/META-INF/context.html
 /build/
 src/com/focuseddeveloper/database/DB_UserData.java
+/target/
