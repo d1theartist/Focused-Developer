@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="include/header.jsp"></c:import>
 
-
+ 
 	<!-- search bar -->
 	<div>
 		<section id="searchbar">
@@ -29,10 +29,10 @@
 
 			<p id=title-summary>${project.summary}</p>
 			<br>
-			
+			<h2>Features and Highlights</h2>
 			<ul>
 				<c:forEach items="${project.keyFeatures}" var="feature">
-				<li>${feature[0]}, ${feature[1]}
+				<li>${feature[0]}: ${feature[1]}
 				</c:forEach>
 			</ul>
 			
