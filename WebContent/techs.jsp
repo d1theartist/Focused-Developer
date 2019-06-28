@@ -36,7 +36,7 @@
 			<p id="project-summary">${project.summary}</p>
 				<ul>
 					<c:forEach items="${project.keyFeatures}" var="feature">
-					<li>${feature[0]}, ${feature[1]}
+					<li>${feature[0]}
 					</c:forEach>
 				</ul>
 				<a href=${pageContext.request.contextPath}/project?page=${project.webTitle} >Click here to learn more.</a>

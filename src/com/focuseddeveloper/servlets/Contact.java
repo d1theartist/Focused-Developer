@@ -71,13 +71,13 @@ public class Contact extends HttpServlet {
 	
 	private void messageSent(PrintWriter out) {		
 		String title = "Send Email";
-        String res = "Sent message successfully....";
+        String res = "Sent message successfully...";
         String docType =
         "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
         
         out.println(docType +
            "<html>\n" +
-              "<head><title>" + title + "</title></head>\n" +
+              "<head><title>" + title + "</title> "+ "<meta http-equiv=\"refresh\" content=\"5;url=index.jsp\" /> "+ "</head>\n" +
               "<body bgcolor = \"#f0f0f0\">\n" +
                  "<h1 align = \"center\">" + title + "</h1>\n" +
                  "<p align = \"center\">" + res + "</p>\n" +
