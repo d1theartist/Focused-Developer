@@ -5,13 +5,7 @@
 <c:import url="include/header.jsp"></c:import>
 
  
-	<!-- search bar -->
-	<div>
-		<section id="searchbar">
-			<input type="text" placeholder="Search...">
-		</section>
-	</div>
-
+<c:import url="include/topbar.jsp"></c:import>
 
 	<!-- main content -->
 	<jsp:useBean id="projectTechs" class="com.focuseddeveloper.beans.ProjectTech" scope="session"></jsp:useBean>
