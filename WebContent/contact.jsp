@@ -4,12 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="include/header.jsp"></c:import>
 
-	<!-- search bar -->
-	<div>
-		<section id="searchbar">
-			<input type="text" placeholder="Search...">
-		</section>
-	</div>
+<c:import url="include/topbar.jsp"></c:import>
 
 
 	<!-- main content -->
