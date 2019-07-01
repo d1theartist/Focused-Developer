@@ -48,6 +48,14 @@ public class ServeHome extends HttpServlet {
 			request.setAttribute("title", "Contact");
 			request.getRequestDispatcher("contact.jsp").forward(request, response);
 			break;
+		case "login":
+			request.setAttribute("title", "Login");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			break;
+		case "logout":
+			request.setAttribute("title", "Logout");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+			break;
 		default: 
 			request.setAttribute("title", "Not Found");
 			request.getRequestDispatcher("error.jsp").forward(request, response);

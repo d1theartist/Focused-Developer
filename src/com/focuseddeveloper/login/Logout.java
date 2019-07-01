@@ -8,20 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.focuseddeveloper.database.DB_UserData;
-import com.focuseddeveloper.service.Email_UserData;
-
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class Logout
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/Logout")
+public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public Logout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +29,12 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		session.removeAttribute("userEmail");
+		session.removeAttribute("userName");
+		session.invalidate();
+		response.sendRedirect("index.jsp");
+		
 	}
 
 	/**
@@ -39,32 +42,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String userEmail = request.getParameter("email");
-		String userPassword = request.getParameter("password");
-		
-		if(validateUser(userEmail, userPassword)) {
-			System.out.println("login success!");
-			HttpSession session = request.getSession();
-			session.setAttribute("userEmail", userEmail);
-			session.setAttribute("userName", "Charles");
-			response.sendRedirect("index.jsp");
-		}else {
-			//todo login failed
-			response.sendRedirect("login.jsp");
-		}
-	}
-
-	private boolean validateUser(String userEmail, String userPassword) {
-		// TODO Auto-generated method stub
-		String email = Email_UserData.ADMIN_USER;
-		String pass = Email_UserData.ADMIN_PASS;
-		
-		if(userEmail.equals(email)&&userPassword.equals(pass)) {
-			
-			return true;
-		}
-			
-		return false;
+		doGet(request, response);
 	}
 
 }
