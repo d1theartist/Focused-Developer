@@ -168,6 +168,16 @@ nav a:hover {
 
 }
 
+#login-form{
+	text-align: center;
+	background-color: lightgrey;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin: auto;
+	padding-top: 1px;
+	
+
+}
 
 
 
@@ -184,8 +194,18 @@ nav a:hover {
 	margin: 8px;
 }
 
+#logout_btn{
+	float: center;
+	margin-left: 4px;
+}
+
 
 @media screen and (min-width: 375px) {
+	
+	#logout_btn{
+	float: right;
+	margin-left: 8px;
+	}
 
 	#searchbar {
 		text-align: right;
