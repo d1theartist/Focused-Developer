@@ -25,4 +25,12 @@ public class DB_Helper {
 	public static final String FEATURE_NAME = "feature_name";
 	public static final String FEATURE_DESC = "feature_desc";
 	public static final String FEATURE_ID = "feature_id";
+	
+	public static final String USERS_TABLE = "users";
+	public static final String USER_ID = "user_id";
+	public static final String USER_ACCESS = "access_level";
+	public static final String USER_EMAIL = "user_email";
+	public static final String USER_PASSWORD = "user_password";
+	public static final String USER_NAME = "user_name";
+	
 }
