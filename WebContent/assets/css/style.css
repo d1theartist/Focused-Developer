@@ -48,7 +48,7 @@ footer {
 }
 
 #searchbar {
-	height: 30px;
+	height: 60px;
 	background-color: #9BC4BC;
 	text-align: center;
 	padding: 8px 4px 0;
@@ -208,6 +208,7 @@ nav a:hover {
 	}
 
 	#searchbar {
+			height: 30px;
 		text-align: right;
 	}
 	

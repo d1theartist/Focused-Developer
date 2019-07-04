@@ -11,7 +11,7 @@
 			<div class="login">
 				<c:set var="name" value="${sessionScope.userName}" scope="session"></c:set>
 				<c:if test="${empty name}">
-					Welcome Guest. 
+					Welcome Guest.
 					<a href=${pageContext.request.contextPath}/home?page=login> Login</a>
 				</c:if>
 				<c:if test="${not empty name}">
