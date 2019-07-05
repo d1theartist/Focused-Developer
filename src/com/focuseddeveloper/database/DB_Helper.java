@@ -1,5 +1,7 @@
 package com.focuseddeveloper.database;
 
+import com.focuseddeveloper.beans.Users;
+
 public class DB_Helper {
 
 	public static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
@@ -45,6 +47,21 @@ public class DB_Helper {
 				+ USER_PASSWORD + " VARCHAR(20) NOT NULL, "
 				+ USER_NAME + " VARCHAR(20) NOT NULL, "
 				+ "PRIMARY KEY (" + USER_ID + "))";
+		return statement;
+	}
+	
+	public static String queryUserTable() {
+		String statement;
+		statement = "SELECT * from " + USERS_TABLE;
+		
+		return statement;
+	}
+	
+	public static String addUser(Users newUser) {
+		String statement;
+		statement = "INSERT INTO " + USERS_TABLE + "(" + USER_ACCESS + ", " + USER_EMAIL + ", " + USER_PASSWORD + ", " + USER_NAME + ") "
+				+ "VALUES( '" + newUser.getAccess() + "', '" +newUser.getEmail() + "', '" + newUser.getPassword() + "', '" + newUser.getName() + "')";
+
 		return statement;
 	}
 	

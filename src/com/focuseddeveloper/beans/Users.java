@@ -2,6 +2,10 @@ package com.focuseddeveloper.beans;
 
 public class Users {
 	
+	public static final String ACCESS_ADMIN = "ADMIN";
+	public static final String ACCESS_MEMBER = "MEMBER";
+	public static final String ACCESS_GUEST = "GUEST";
+	
 	private int ID;
 	private String access;
 	private String email;

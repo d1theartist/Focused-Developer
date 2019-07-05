@@ -2,7 +2,9 @@ package com.focuseddeveloper.login;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +23,7 @@ import com.focuseddeveloper.service.Email_UserData;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -43,6 +45,8 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		
 		FetchUsersAndPosts fetchUsers;
 		ArrayList<Users> userList = new ArrayList<Users>();
 		
@@ -52,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 		String userEmail = request.getParameter("email");
 		String userPassword = request.getParameter("password");
 		
-		if(validateUser(userEmail, userPassword)) {
+		if(validateUserLogin(userEmail, userPassword, userList)) {
 			System.out.println("login success!");
 			HttpSession session = request.getSession();
 			session.setAttribute("userEmail", userEmail);
@@ -64,17 +68,19 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 
-	private boolean validateUser(String userEmail, String userPassword) {
+	private boolean validateUserLogin(String currentEmail, String currentPassword, ArrayList<Users> userList) {
 		// TODO Auto-generated method stub
-		String email = Email_UserData.ADMIN_USER;
-		String pass = Email_UserData.ADMIN_PASS;
-		
-		if(userEmail.equals(email)&&userPassword.equals(pass)) {
-			
-			return true;
+		for(Users user: userList) {
+			if( user.getEmail().equals(currentEmail ) ) {
+				if( user.getPassword().equals(currentPassword ) ) {
+					return true;
+				}else {
+					return false;
+				}
+			}
 		}
-			
 		return false;
 	}
+		
 
 }
