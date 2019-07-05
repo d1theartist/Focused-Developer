@@ -33,4 +33,19 @@ public class DB_Helper {
 	public static final String USER_PASSWORD = "user_password";
 	public static final String USER_NAME = "user_name";
 	
+	public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS ";
+	
+	public static String createUsersTable() {
+		String statement;
+		
+		statement = CREATE_TABLE + USERS_TABLE
+				+ "(" + USER_ID + " MEDIUMINT NOT NULL AUTO_INCREMENT, "
+				+ USER_ACCESS + " VARCHAR(20) NOT NULL, "
+				+ USER_EMAIL + " VARCHAR(50) NOT NULL, "
+				+ USER_PASSWORD + " VARCHAR(20) NOT NULL, "
+				+ USER_NAME + " VARCHAR(20) NOT NULL, "
+				+ "PRIMARY KEY (" + USER_ID + "))";
+		return statement;
+	}
+	
 }

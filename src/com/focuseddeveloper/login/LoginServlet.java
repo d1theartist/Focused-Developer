@@ -1,6 +1,8 @@
 package com.focuseddeveloper.login;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.focuseddeveloper.beans.Users;
 import com.focuseddeveloper.database.DB_UserData;
+import com.focuseddeveloper.servedata.FetchUsersAndPosts;
 import com.focuseddeveloper.service.Email_UserData;
 
 /**
@@ -39,6 +43,12 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		FetchUsersAndPosts fetchUsers;
+		ArrayList<Users> userList = new ArrayList<Users>();
+		
+		fetchUsers = new FetchUsersAndPosts();
+		userList = (ArrayList) fetchUsers.getUsers();
+		
 		String userEmail = request.getParameter("email");
 		String userPassword = request.getParameter("password");
 		

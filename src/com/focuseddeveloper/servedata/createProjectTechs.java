@@ -55,12 +55,13 @@ public class CreateProjectTechs {
 			e1.printStackTrace();
 		}
 		
-		Connection conn;
+		Connection conn = null;
+		Statement statement = null;
 		try {
 			System.out.println("Gonna try to connect now.");
 			
 			conn = DriverManager.getConnection(DB_Helper.DB_URL+DB_Helper.DB_NAME, DB_UserData.USER, DB_UserData.PASS);
-			Statement statement = conn.createStatement();
+			statement = conn.createStatement();
 			//String sql = "SELECT * from "+DB_Helper.PROJECT_TECH_TABLE;
 			String sql = dataQuery;
 			System.out.println("SQL: "+sql);
@@ -128,10 +129,20 @@ public class CreateProjectTechs {
 				techList.add(projectTech);
 				*/
 			};
-			conn.close();
 		} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+		}finally {
+			try {
+				if(statement != null)
+					conn.close();
+			}catch(SQLException se) {
+			}
+			try {
+				if(conn != null)
+					conn.close();
+			}catch(SQLException se) {
+			}
 		}
 
 		/*
