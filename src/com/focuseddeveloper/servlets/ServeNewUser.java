@@ -65,19 +65,17 @@ public class ServeNewUser extends HttpServlet {
 		Users newUser = new Users(0, access, email, password, name);
 		
 		if(doesUserExist(newUser)) {
-			
+			response.sendRedirect("login.jsp");
+			// TODO: Create a welcome page
 		}else {
 		
 			boolean userAdded = new FetchUsersAndPosts().addUser(newUser);
-		
-			if(!email.equals(Email_UserData.ADMIN_USER)) {
-				if(userAdded) {
-					//goToLogin(request,response);
-				}else {
-				
-				}
-			}else {
+
+			if(userAdded) {
 				//goToLogin(request,response);
+				response.sendRedirect("login.jsp");
+			}else {
+				response.sendRedirect("signup.jsp");
 			}
 		}
 		
@@ -93,10 +91,5 @@ public class ServeNewUser extends HttpServlet {
 		return false;
 	}
 	
-	private void goToLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher =
-				getServletContext().getRequestDispatcher("/LoginServlet");
-	    		dispatcher.forward(request, response);
-	}
 
 }

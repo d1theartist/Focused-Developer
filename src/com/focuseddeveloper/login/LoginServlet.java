@@ -45,41 +45,44 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
 		
-		
-		FetchUsersAndPosts fetchUsers;
-		ArrayList<Users> userList = new ArrayList<Users>();
-		
-		fetchUsers = new FetchUsersAndPosts();
-		userList = (ArrayList) fetchUsers.getUsers();
 		
 		String userEmail = request.getParameter("email");
 		String userPassword = request.getParameter("password");
+		Users currentUser = validateUserLogin(userEmail, userPassword);
 		
-		if(validateUserLogin(userEmail, userPassword, userList)) {
+		if( currentUser != null) {
 			System.out.println("login success!");
-			HttpSession session = request.getSession();
-			session.setAttribute("userEmail", userEmail);
-			session.setAttribute("userName", "Charles");
+			session.setAttribute("userEmail", currentUser.getEmail());
+			session.setAttribute("userName", currentUser.getName());
 			response.sendRedirect("index.jsp");
 		}else {
-			//todo login failed
+			System.out.println("Login Failed");
+			session.setAttribute("attempted","failed");
 			response.sendRedirect("login.jsp");
 		}
 	}
 
-	private boolean validateUserLogin(String currentEmail, String currentPassword, ArrayList<Users> userList) {
-		// TODO Auto-generated method stub
+	private Users validateUserLogin(String currentEmail, String currentPassword) {
+		FetchUsersAndPosts fetchUsers;
+		List<Users> userList = new ArrayList<Users>();
+		
+		fetchUsers = new FetchUsersAndPosts();
+		userList = fetchUsers.getUsers();
+		
+		Users currentUser = null;
 		for(Users user: userList) {
 			if( user.getEmail().equals(currentEmail ) ) {
 				if( user.getPassword().equals(currentPassword ) ) {
-					return true;
+					currentUser = new Users(user);
+					return currentUser;
 				}else {
-					return false;
+					return null;
 				}
 			}
 		}
-		return false;
+		return null;
 	}
 		
 

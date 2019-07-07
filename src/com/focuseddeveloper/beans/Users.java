@@ -20,6 +20,14 @@ public class Users {
 		name = "Guest";
 	}
 	
+	public Users(Users objUser) {
+		this.ID = objUser.ID;
+		this.access = objUser.access;
+		this.email = objUser.email;
+		this.password = objUser.password;
+		this.name = objUser.name;
+	}
+	
 	public Users(int ID, String access, String email, String password, String name) {
 		this.ID = ID;
 		this.access = access;

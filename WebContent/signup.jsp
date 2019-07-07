@@ -9,14 +9,19 @@
 
 	<!-- main content -->
 	<div id="wrapper">
-		<form method="post" action="LoginServlet" id="login-form">
-			<h2 id="page-title">Login</h2>
+		<form method="post" action=# id="login-form" name="signup_form" onSubmit="return passwordMatch()">
+			<h2 id="page-title">Sign Up</h2>
 			<hr id="title-line"> 
 			<br>
-					<input type="email" name="email" id="login_email" value="" placeholder="Email"/>
+			
+					<input type="name" name="name" id="signup_name" value="" placeholder="Name"/>
+					<br>
+					<input type="email" name="email" id="signup_email" value="" placeholder="Email"/>
 					<br>
 					<br>
-					<input type="password" name="password" id="login_password" value="" placeholder="Password"/>
+					<input type="password" name="password" id="password1" value="" placeholder="Password"/>
+					<br>
+					<input type="password" name="password2" id="password2" value="" placeholder="Confirm Password"/>
 					<br>
 					<c:set var="attempted" value="${sessionScope.attempted}" scope="session"></c:set>
 					<c:if test="${attempted=='failed'}">
@@ -24,15 +29,20 @@
 						<br>
 					</c:if>
 					<br>
-						<input type="submit" value="Sign in" />
+						<input type="submit" value="Sign up"/>
 						<br> <br>
-						<button onclick="window.location.href ='${pageContext.request.contextPath}/home?page=signup';" type="button">Create a New Account</button>
-						<br>
-						<br>
+
 		</form>
 		
 		 
 		
 		<c:remove var="attempted"/>
+		
+		<script>
+
+	
+		
+	
+		</script>
 		
 		<c:import url="include/footer.jsp"></c:import>
