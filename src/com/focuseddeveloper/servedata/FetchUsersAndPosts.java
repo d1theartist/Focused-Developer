@@ -48,17 +48,17 @@ public class FetchUsersAndPosts {
 				
 				sql = dataQuery;
 				ResultSet results = statement.executeQuery(sql);
-				int currentUser = 0;
-				int previousUser = 0;
+				int currentUserID = 0;
+				int previousUserID = 0;
 				
 				Users newUser;
 				
 				while(results.next() ) {
 					System.out.println("We have results!");					
 					
-					currentUser = results.getInt(DB_Helper.USER_ID);
+					currentUserID = results.getInt(DB_Helper.USER_ID);
 					
-					if(currentUser !=  previousUser) {
+					if(currentUserID !=  previousUserID) {
 						newUser = new Users(results.getInt(DB_Helper.USER_ID), results.getString(DB_Helper.USER_ACCESS), results.getString(DB_Helper.USER_EMAIL), results.getString(DB_Helper.USER_PASSWORD), results.getString(DB_Helper.USER_NAME) );
 						userList.add(newUser);
 					}
@@ -79,9 +79,9 @@ public class FetchUsersAndPosts {
 				}
 			}
 			
-			if(!adminAdded() ) {
-				addAdmin();
-			}
+			
+			addAdmin();
+			
 		}
 		
 		public List<Users> getUsers(){
@@ -89,6 +89,10 @@ public class FetchUsersAndPosts {
 		}
 		
 		public boolean addUser(Users newUser) {
+			
+			if(emailInUse(newUser)) {
+				return false;
+			}
 			
 			String addUser;
 			
@@ -114,6 +118,13 @@ public class FetchUsersAndPosts {
 				//System.out.println("SQL: "+sql);
 				resultInt = statement.executeUpdate(sql);
 				
+				if(resultInt > 0) {
+					userList.add(newUser);
+					System.out.println("New User added: " + newUser.getName());
+				}else {
+					System.out.println("Failed to add: " + newUser.getName() + " to the user table.");
+				}
+				
 			}catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -130,7 +141,7 @@ public class FetchUsersAndPosts {
 				}
 			}
 			
-			if(resultInt< 0)
+			if(resultInt > 0)
 				return true;
 			return false;
 		}
@@ -140,10 +151,12 @@ public class FetchUsersAndPosts {
 	        addUser( admin);
 		}
 		
-		public boolean adminAdded() {
+		public boolean emailInUse(Users newUser) {
 			for(Users user: userList) {
-				if( user.getEmail().equals(Email_UserData.ADMIN_USER) )
+				if( user.getEmail().equals(newUser.getEmail()) ) {
+					System.out.println("Email address is already in use: " + newUser.getEmail());
 					return true;
+				}
 			}
 			return false;
 		}

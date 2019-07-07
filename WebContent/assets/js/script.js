@@ -1,3 +1,15 @@
+function passwordMatch(){
+	var pass1 = document.signup_form.password1;
+	var pass2 = document.signup_form.password2;
+	console.log('pass1: '+pass1);
+	console.log('pass2: '+pass2);
+	if(pass1 != pass2){
+		alert("passwords do not match");
+		return false;
+	}
+	
+}
+
 $(function(){
 	//href=${pageContext.request.contextPath}/home?page=home
 	var pageName = window.location.href.substr(window.location.href.lastIndexOf("/")+1);

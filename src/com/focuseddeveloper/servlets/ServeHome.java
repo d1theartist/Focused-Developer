@@ -56,6 +56,10 @@ public class ServeHome extends HttpServlet {
 			request.setAttribute("title", "Logout");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			break;
+		case "signup":
+			request.setAttribute("title", "Signup");
+			request.getRequestDispatcher("signup.jsp").forward(request, response);
+			break;
 		default: 
 			request.setAttribute("title", "Not Found");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
