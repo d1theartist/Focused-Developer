@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.focuseddeveloper.beans.Users;
 import com.focuseddeveloper.database.DB_Helper;
 import com.focuseddeveloper.database.DB_UserData;
+import com.focuseddeveloper.login.HashPasswords;
 import com.focuseddeveloper.servedata.FetchUsersAndPosts;
 import com.focuseddeveloper.service.Email_UserData;
 
@@ -36,10 +37,7 @@ public class ServeNewUser extends HttpServlet {
     public ServeNewUser() {
         super();
         // TODO Auto-generated constructor stub
-        FetchUsersAndPosts fetchUsers;
-		
-		fetchUsers = new FetchUsersAndPosts();
-		userList =  (ArrayList<Users>) fetchUsers.getUsers();
+        
     }
 
 	/**
@@ -55,6 +53,10 @@ public class ServeNewUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		FetchUsersAndPosts fetchUsers;
+		
+		fetchUsers = new FetchUsersAndPosts();
+		userList =  (ArrayList<Users>) fetchUsers.getUsers();
 		
 		// String access, String email, String password, String name) 
 		String access = request.getParameter("access");
@@ -62,14 +64,25 @@ public class ServeNewUser extends HttpServlet {
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		
-		Users newUser = new Users(0, access, email, password, name);
-		
-		if(doesUserExist(newUser)) {
+		System.out.println("password: " + password);
+				
+		if(isEmailInUse(email)) {
 			response.sendRedirect("login.jsp");
+			password = null;
+			System.gc();
 			// TODO: Create a welcome page
 		}else {
-		
-			boolean userAdded = new FetchUsersAndPosts().addUser(newUser);
+			String salt = HashPasswords.generateSalt(512).get();
+			password = HashPasswords.hashPassword(password, salt).get();
+			System.gc();
+			
+			System.out.println("hashed password: " + password);
+			System.out.println("hashed salt: " + salt);
+			
+			Users newUser = new Users(0, access, email, password, name);
+			newUser.setSalt(salt);
+			
+			boolean userAdded = fetchUsers.addUser(newUser);
 
 			if(userAdded) {
 				//goToLogin(request,response);
@@ -81,15 +94,17 @@ public class ServeNewUser extends HttpServlet {
 		
 	}
 	
-	public boolean doesUserExist(Users newUser) {
+	public boolean isEmailInUse(String newEmail) {
 		//if user's email is already in use, reject the new account
 		for(Users user: userList) {
-			if( user.getEmail().equals(newUser.getEmail() ) ) {
+			if( user.getEmail().equals(newEmail) ) {
 				return true;
 			}
 		}
 		return false;
 	}
+	
+	
 	
 
 }

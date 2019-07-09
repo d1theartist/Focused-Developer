@@ -13,10 +13,10 @@
 			<h2 id="page-title">Login</h2>
 			<hr id="title-line"> 
 			<br>
-					<input type="email" name="email" id="login_email" value="" placeholder="Email"/>
+					<input type="email" name="email" id="login_email" value="" placeholder="Email"  required/>
 					<br>
 					<br>
-					<input type="password" name="password" id="login_password" value="" placeholder="Password"/>
+					<input type="password" name="password" id="login_password" value="" placeholder="Password"  required/>
 					<br>
 					<c:set var="attempted" value="${sessionScope.attempted}" scope="session"></c:set>
 					<c:if test="${attempted=='failed'}">
