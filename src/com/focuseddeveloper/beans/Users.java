@@ -10,6 +10,7 @@ public class Users {
 	private String access;
 	private String email;
 	private String password;
+	private String salt;
 	private String name;
 	
 	public Users() {
@@ -66,6 +67,11 @@ public class Users {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 	
 }

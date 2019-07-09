@@ -17,11 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.focuseddeveloper.beans.Users;
 import com.focuseddeveloper.database.DB_Helper;
 import com.focuseddeveloper.database.DB_UserData;
+import com.focuseddeveloper.login.HashPasswords;
+import com.focuseddeveloper.login.LoginServlet;
 import com.focuseddeveloper.service.Email_UserData;
 
 public class FetchUsersAndPosts {
 	
 		private List<Users> userList = new ArrayList<Users>();
+		private static final String PW_HOLDER = "dummy_password";
 		
 		public FetchUsersAndPosts() {
 			
@@ -38,7 +41,7 @@ public class FetchUsersAndPosts {
 			Connection conn = null;
 			Statement statement= null;
 			try {
-				System.out.println("Gonna try to connect now.");
+				System.out.println("FetchUsers, constructor.  Pre initial connection.");
 				
 				conn = DriverManager.getConnection(DB_Helper.DB_URL+DB_Helper.DB_NAME, DB_UserData.USER, DB_UserData.PASS);
 				statement = conn.createStatement();
@@ -59,7 +62,7 @@ public class FetchUsersAndPosts {
 					currentUserID = results.getInt(DB_Helper.USER_ID);
 					
 					if(currentUserID !=  previousUserID) {
-						newUser = new Users(results.getInt(DB_Helper.USER_ID), results.getString(DB_Helper.USER_ACCESS), results.getString(DB_Helper.USER_EMAIL), results.getString(DB_Helper.USER_PASSWORD), results.getString(DB_Helper.USER_NAME) );
+						newUser = new Users(results.getInt(DB_Helper.USER_ID), results.getString(DB_Helper.USER_ACCESS), results.getString(DB_Helper.USER_EMAIL), PW_HOLDER, results.getString(DB_Helper.USER_NAME) );
 						userList.add(newUser);
 					}
 				}
@@ -91,6 +94,7 @@ public class FetchUsersAndPosts {
 		public boolean addUser(Users newUser) {
 			
 			if(emailInUse(newUser)) {
+				System.out.println("Will not add new user.  Email is in use.");
 				return false;
 			}
 			
@@ -115,7 +119,7 @@ public class FetchUsersAndPosts {
 				conn = DriverManager.getConnection(DB_Helper.DB_URL+DB_Helper.DB_NAME, DB_UserData.USER, DB_UserData.PASS);
 				statement = conn.createStatement();
 				String sql = addUser;
-				//System.out.println("SQL: "+sql);
+				System.out.println("SQL: "+sql);
 				resultInt = statement.executeUpdate(sql);
 				
 				if(resultInt > 0) {
@@ -126,6 +130,7 @@ public class FetchUsersAndPosts {
 				}
 				
 			}catch (SQLException e) {
+				System.out.println("SQLException: " + e.getLocalizedMessage() );
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally {
@@ -147,18 +152,23 @@ public class FetchUsersAndPosts {
 		}
 		
 		private void addAdmin()  {
-	        Users admin = new Users(0, Users.ACCESS_ADMIN, Email_UserData.ADMIN_USER, Email_UserData.ADMIN_PASS, "Charles");
+			System.out.println("Adding admin.");
+			String salt = HashPasswords.generateSalt(512).get();
+			System.out.println("Salt Length: "+ salt.length());
+			String password = HashPasswords.hashPassword(Email_UserData.ADMIN_PASS, salt).get();
+			System.gc();				
+	        Users admin = new Users(0, Users.ACCESS_ADMIN, Email_UserData.ADMIN_USER, password, "Charles");
+	        admin.setSalt(salt);
 	        addUser( admin);
 		}
 		
 		public boolean emailInUse(Users newUser) {
-			for(Users user: userList) {
-				if( user.getEmail().equals(newUser.getEmail()) ) {
-					System.out.println("Email address is already in use: " + newUser.getEmail());
-					return true;
-				}
+			if( LoginServlet.validateEmail(newUser.getEmail()) != null ) {
+				System.out.println("Email address is already in use: " + newUser.getEmail());
+				return true;
 			}
 			return false;
 		}
+		
 
 }

@@ -1,10 +1,13 @@
 function passwordMatch(){
-	var pass1 = document.signup_form.password1;
-	var pass2 = document.signup_form.password2;
-	console.log('pass1: '+pass1);
-	console.log('pass2: '+pass2);
+	var pass1 = document.forms["signup_form"]["password"].value;
+	var pass2 = document.forms["signup_form"]["password2"].value;
+
 	if(pass1 != pass2){
-		alert("passwords do not match");
+		alert("Passwords do not match.");
+		return false;
+	}
+	if(pass1.length<8){
+		alert("Password must be at least 8 characters long.");
 		return false;
 	}
 	

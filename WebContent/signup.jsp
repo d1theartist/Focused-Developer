@@ -9,25 +9,20 @@
 
 	<!-- main content -->
 	<div id="wrapper">
-		<form method="post" action=# id="login-form" name="signup_form" onSubmit="return passwordMatch()">
+		<form method="post" action="ServeNewUser" id="login-form" name="signup_form" onSubmit="return passwordMatch()">
 			<h2 id="page-title">Sign Up</h2>
 			<hr id="title-line"> 
 			<br>
 			
-					<input type="name" name="name" id="signup_name" value="" placeholder="Name"/>
+					<input type="name" name="name" id="signup_name" value="" placeholder="Name" required/>
 					<br>
-					<input type="email" name="email" id="signup_email" value="" placeholder="Email"/>
+					<input type="email" name="email" id="signup_email" value="" placeholder="Email" required/>
 					<br>
 					<br>
-					<input type="password" name="password" id="password1" value="" placeholder="Password"/>
+					<input type="password" name="password" id="password1" value="" placeholder="Password" required/>
 					<br>
-					<input type="password" name="password2" id="password2" value="" placeholder="Confirm Password"/>
+					<input type="password" name="password2" id="password2" value="" placeholder="Confirm Password" required/>
 					<br>
-					<c:set var="attempted" value="${sessionScope.attempted}" scope="session"></c:set>
-					<c:if test="${attempted=='failed'}">
-						Login attempt failed.
-						<br>
-					</c:if>
 					<br>
 						<input type="submit" value="Sign up"/>
 						<br> <br>
@@ -35,7 +30,7 @@
 		</form>
 		
 		 
-		
+		<!--  attempted is set inside the servlet when a log in attempt fails -->
 		<c:remove var="attempted"/>
 		
 		<script>

@@ -33,7 +33,9 @@ public class DB_Helper {
 	public static final String USER_ACCESS = "access_level";
 	public static final String USER_EMAIL = "user_email";
 	public static final String USER_PASSWORD = "user_password";
+	public static final String USER_SALT = "user_salt";
 	public static final String USER_NAME = "user_name";
+	
 	
 	public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS ";
 	
@@ -44,7 +46,8 @@ public class DB_Helper {
 				+ "(" + USER_ID + " MEDIUMINT NOT NULL AUTO_INCREMENT, "
 				+ USER_ACCESS + " VARCHAR(20) NOT NULL, "
 				+ USER_EMAIL + " VARCHAR(50) NOT NULL, "
-				+ USER_PASSWORD + " VARCHAR(20) NOT NULL, "
+				+ USER_PASSWORD + " VARCHAR(1512) NOT NULL, "
+				+ USER_SALT + " VARCHAR(1512) NOT NULL, "
 				+ USER_NAME + " VARCHAR(20) NOT NULL, "
 				+ "PRIMARY KEY (" + USER_ID + "))";
 		return statement;
@@ -52,15 +55,29 @@ public class DB_Helper {
 	
 	public static String queryUserTable() {
 		String statement;
-		statement = "SELECT * from " + USERS_TABLE;
+		statement = "SELECT "+ USER_ACCESS + ", " + USER_EMAIL + ", "+ USER_NAME + " from " + USERS_TABLE;
+		
+		return statement;
+	}
+	
+	public static String queryUserTablePassword(int userID) {
+		String statement;
+		statement = "SELECT "+ USER_PASSWORD + ", " + USER_SALT + " from " + USERS_TABLE + " where " + USER_ID + " = " + userID;
+		
+		return statement;
+	}
+	
+	public static String queryUserTableForEmail(String email) {
+		String statement;
+		statement = "SELECT * from " + USERS_TABLE + " where " + USER_EMAIL + " = \"" + email + "\"";
 		
 		return statement;
 	}
 	
 	public static String addUser(Users newUser) {
 		String statement;
-		statement = "INSERT INTO " + USERS_TABLE + "(" + USER_ACCESS + ", " + USER_EMAIL + ", " + USER_PASSWORD + ", " + USER_NAME + ") "
-				+ "VALUES( '" + newUser.getAccess() + "', '" +newUser.getEmail() + "', '" + newUser.getPassword() + "', '" + newUser.getName() + "')";
+		statement = "INSERT INTO " + USERS_TABLE + "(" + USER_ACCESS + ", " + USER_EMAIL + ", " + USER_PASSWORD + ", "+ USER_SALT + ", " + USER_NAME + ") "
+				+ "VALUES( '" + newUser.getAccess() + "', '" +newUser.getEmail() + "', '" + newUser.getPassword() + "', '"+ newUser.getSalt() + "', '" + newUser.getName() + "')";
 
 		return statement;
 	}
