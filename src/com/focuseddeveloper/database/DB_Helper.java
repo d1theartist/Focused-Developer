@@ -1,6 +1,9 @@
 package com.focuseddeveloper.database;
 
+import java.time.LocalDateTime;
+
 import com.focuseddeveloper.beans.Users;
+import com.focuseddeveloper.beans.Post.PostType;
 
 public class DB_Helper {
 
@@ -36,8 +39,30 @@ public class DB_Helper {
 	public static final String USER_SALT = "user_salt";
 	public static final String USER_NAME = "user_name";
 	
+	public static final String POSTS_TABLE = "posts";
+	public static final String POST_ID = "post_id";
+	public static final String POSTERS_ID = "posters_id";
+	public static final String POST_TYPE = "post_type";
+	public static final String POST_TOPIC = "post_topic";
+	public static final String POST_MESSAGE = "post_message";
+	public static final String POST_DATE = "post_date";	
 	
 	public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS ";
+	
+	
+	public static String createPostTable() {
+		String statement;
+		
+		statement = CREATE_TABLE + POSTS_TABLE
+				+ "(" + POST_ID + " MEDIUMINT NOT NULL AUTO_INCREMENT, "
+				+ POSTERS_ID + " MEDIUMINT NOT NULL, "
+				+ POST_TYPE + " VARCHAR(20) NOT NULL, "
+				+ POST_TOPIC + " VARCHAR(100) NOT NULL, "
+				+ POST_MESSAGE + " VARCHAR(3500) NOT NULL, "
+				+ POST_DATE + " DATE NOT NULL, "
+				+ "PRIMARY KEY (" + POST_ID + "))";
+		return statement;
+	}
 	
 	public static String createUsersTable() {
 		String statement;
@@ -52,6 +77,8 @@ public class DB_Helper {
 				+ "PRIMARY KEY (" + USER_ID + "))";
 		return statement;
 	}
+	
+	
 	
 	public static String queryUserTable() {
 		String statement;
