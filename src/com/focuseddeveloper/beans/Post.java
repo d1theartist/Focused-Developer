@@ -1,43 +1,44 @@
 package com.focuseddeveloper.beans;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Post {
 	
-	public enum PostType { blogPost, comment };
+
 	
 	private int ID;
 	private int userID;
+	private int parentID;
 	private String userName;
-	private PostType postType;
 	private String topic;
 	private String message;
-	private LocalDateTime date;
+	private LocalDate date;
 	ArrayList<Post> replies;
 
 	public Post() {
 		this.ID = 0;
 		this.userID = 0;
+		this.parentID = 0;
 		this.userName = "Name";
-		this.postType = PostType.blogPost;
 		this.topic = "Topic";
 		this.message = "Post message";
-		this.date = LocalDateTime.now();
+		this.date = LocalDate.now();
 		this.replies = new ArrayList<Post>();
 		
 	}
 	
-	public Post(int ID, int userID, String userName, PostType postType,
-			String topic, String message, LocalDateTime date, ArrayList<Post> replies) {
+	public Post(int ID, int userID, int parentID, String userName,
+			String topic, String message, LocalDate date) {
 		this.ID = ID;
 		this.userID = userID;
+		this.parentID = parentID;
 		this.userName = userName;
-		this.postType = postType;
 		this.topic = topic;
 		this.message = message;
 		this.date = date;
-		this.replies = replies;
+		this.replies = new ArrayList<Post>();
 	}
 
 	public int getID() {
@@ -64,14 +65,6 @@ public class Post {
 		this.userName = userName;
 	}
 
-	public PostType getPostType() {
-		return postType;
-	}
-
-	public void setPostType(PostType postType) {
-		this.postType = postType;
-	}
-
 	public String getTopic() {
 		return topic;
 	}
@@ -88,11 +81,11 @@ public class Post {
 		this.message = message;
 	}
 
-	public LocalDateTime getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -102,6 +95,21 @@ public class Post {
 	
 	public void addReply(Post reply) {
 		this.replies.add(reply);
+	}
+	
+	public int getParentID() {
+		return parentID;
+	}
+
+	public void setParentID(int parentID) {
+		this.parentID = parentID;
+	}
+	
+	public boolean isComment() {
+		if( parentID > 0 ) {
+			return false;
+		}
+		return true;
 	}
 	
 	

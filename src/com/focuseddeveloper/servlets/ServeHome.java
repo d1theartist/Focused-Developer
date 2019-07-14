@@ -1,7 +1,10 @@
 package com.focuseddeveloper.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.focuseddeveloper.beans.Post;
+import com.focuseddeveloper.beans.Project;
+import com.focuseddeveloper.servedata.CreateProjectTechs;
+import com.focuseddeveloper.servedata.FetchPost;
+import com.mysql.cj.util.StringUtils;
 
 /**
  * Servlet implementation class ServeHome
@@ -30,13 +39,19 @@ public class ServeHome extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
-		System.out.println("In Home doGet");
+		System.out.println("Testing");
 		
-	HttpSession session = request.getSession(); 
+	
+		
+	//HttpSession session = request.getSession(); 
+	
 
 		switch (page) {
 		
 		case "home":
+			//FetchPost myPost = new FetchPost();
+			selectProjectHighlight( request);
+			getPost(request);
 			request.setAttribute("title", "Homepage");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			break;
@@ -74,6 +89,42 @@ public class ServeHome extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	private void selectProjectHighlight(HttpServletRequest request) {
+		ArrayList<Project> projects = new ArrayList<Project>();
+		Project pjHighlight;
+		try {
+			CreateProjectTechs pjs = new CreateProjectTechs();
+			projects = pjs.getProjList();
+			
+			Random rand = new Random();
+			int pjID = rand.nextInt(projects.size() );
+			
+			pjHighlight = projects.get(pjID);
+			
+			request.setAttribute("project", pjHighlight);
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void getPost(HttpServletRequest request) {
+		ArrayList<Post> posts = new ArrayList<Post>();
+		
+		FetchPost fp = new FetchPost();
+		posts = (ArrayList<Post>) fp.getPosts();
+		
+		request.setAttribute("postList", posts);
+		for( Post post: posts) {
+			System.out.println("ID: " +post.getID());
+			System.out.println("User ID: " +post.getUserID());
+			System.out.println("Topic: " +post.getTopic());
+			System.out.println("Message: " +post.getMessage());
+		}
+		
 	}
 
 }

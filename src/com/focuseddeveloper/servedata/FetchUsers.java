@@ -21,12 +21,12 @@ import com.focuseddeveloper.login.HashPasswords;
 import com.focuseddeveloper.login.LoginServlet;
 import com.focuseddeveloper.service.Email_UserData;
 
-public class FetchUsersAndPosts {
+public class FetchUsers {
 	
 		private List<Users> userList = new ArrayList<Users>();
 		private static final String PW_HOLDER = "dummy_password";
 		
-		public FetchUsersAndPosts() {
+		public FetchUsers() {
 			
 			String createTable = DB_Helper.createUsersTable();
 			String dataQuery = DB_Helper.queryUserTable();
