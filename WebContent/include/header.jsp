@@ -16,6 +16,7 @@
 	//alert(page);
     %></title>
 	<link rel="stylesheet" href="assets/css/style.css">
+	<link href="assets/css/all.css" rel="stylesheet">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="assets/js/script.js"></script>

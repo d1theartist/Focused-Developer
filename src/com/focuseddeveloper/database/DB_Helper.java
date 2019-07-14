@@ -3,7 +3,7 @@ package com.focuseddeveloper.database;
 import java.time.LocalDateTime;
 
 import com.focuseddeveloper.beans.Users;
-import com.focuseddeveloper.beans.Post.PostType;
+import com.focuseddeveloper.beans.Post;
 
 public class DB_Helper {
 
@@ -39,10 +39,12 @@ public class DB_Helper {
 	public static final String USER_SALT = "user_salt";
 	public static final String USER_NAME = "user_name";
 	
+	public static final String POSTS_TABLE_TEST = "posts_tests";
 	public static final String POSTS_TABLE = "posts";
 	public static final String POST_ID = "post_id";
 	public static final String POSTERS_ID = "posters_id";
-	public static final String POST_TYPE = "post_type";
+	public static final String POSTERS_NAME = "posters_name";
+	public static final String POST_PARENT_ID = "post_parent_id";
 	public static final String POST_TOPIC = "post_topic";
 	public static final String POST_MESSAGE = "post_message";
 	public static final String POST_DATE = "post_date";	
@@ -53,14 +55,61 @@ public class DB_Helper {
 	public static String createPostTable() {
 		String statement;
 		
-		statement = CREATE_TABLE + POSTS_TABLE
+		statement = CREATE_TABLE + POSTS_TABLE_TEST
 				+ "(" + POST_ID + " MEDIUMINT NOT NULL AUTO_INCREMENT, "
 				+ POSTERS_ID + " MEDIUMINT NOT NULL, "
-				+ POST_TYPE + " VARCHAR(20) NOT NULL, "
+				+ POSTERS_NAME + " VARCHAR(20) NOT NULL, "
+				+ POST_PARENT_ID + " MEDIUMINT NOT NULL, "
 				+ POST_TOPIC + " VARCHAR(100) NOT NULL, "
 				+ POST_MESSAGE + " VARCHAR(3500) NOT NULL, "
-				+ POST_DATE + " DATE NOT NULL, "
+				+ POST_DATE + " DATETIME DEFAULT CURRENT_TIMESTAMP, "
 				+ "PRIMARY KEY (" + POST_ID + "))";
+		return statement;
+	}
+	
+	public static String queryPostTable() { 
+		String statement = "SELECT main.post_id, main.posters_id, main.post_parent_id, main.posters_name, main.post_topic, main.post_message, main.post_date, \r\n" + 
+				"r1.post_id as child_id, r1.post_parent_id as child_parent,r2.posters_id as child_posters_id, r1.posters_name as child_posters_name, r1.post_topic as child_topic, r1.post_message as child_message, r1.post_date as child_date,\r\n" + 
+				"r2.post_id as g_child_id, r2.post_parent_id as g_child_parent, r2.posters_id as g_child_posters_id,r2.posters_name as g_child_posters_name, r2.post_topic as g_child_topic, r2.post_message as g_child_message, r2.post_date as g_child_date\r\n" + 
+				"FROM posts_test as main \r\n" + 
+				"left outer join posts_test as r1 on main.post_id = r1.post_parent_id\r\n" + 
+				"left outer join posts_test as r2 on r1.post_id = r2.post_parent_id  where main.post_parent_id = 0\r\n" + 
+				"Order By post_id desc, child_id asc, g_child_id asc";
+		return statement;
+	}
+	
+	public static String CHILDID = "child_id";
+	public static String CHILD_PARENT_ID = "child_parent";
+	public static String CHILD_POSTERS_ID = "child_posters_id";
+	public static String CHILD_POSTERS_NAME = "child_posters_name";
+	public static String CHILD_TOPIC = "child_topic";
+	public static String CHILD_MESSAGE = "child_message";
+	public static String CHILD_DATE = "child_date";
+	
+	public static String G_CHILDID = "g_child_id";
+	public static String G_CHILD_PARENT_ID = "g_child_parent";
+	public static String G_CHILD_POSTERS_ID = "g_child_posters_id";
+	public static String G_CHILD_POSTERS_NAME = "g_child_posters_name";
+	public static String G_CHILD_TOPIC = "g_child_topic";
+	public static String G_CHILD_MESSAGE = "g_child_message";
+	public static String G_CHILD_DATE = "g_child_date";
+	
+	/*
+	public static String queryPostTable() { 
+		String statement;
+		
+		statement = "SELECT topics." + POST_ID + ", topics."  + POSTERS_ID + ", topics." + POST_TOPIC + ", topics." + POST_MESSAGE + ", topics." + POST_DATE + ",\r\n"
+		+ " replies." + POST_ID + ", replies. +"  + POSTERS_ID + ", replies." + POST_TOPIC + ", replies." + POST_MESSAGE + ", replies." + POST_DATE + ",\r\n"
+		+ "FROM "+ POSTS_TABLE + " as topics LEFT OUTER JOIN " + POSTS_TABLE + " as replies ON topics." + POST_ID + " = replies." + POST_PARENT_ID;
+						
+		return statement;
+	}*/
+	
+	public static String addPost(Post newPost) {
+		String statement;
+		statement = "INSERT INTO " + POSTS_TABLE_TEST + "(" + POST_ID + ", " + POSTERS_ID + ", " + POST_PARENT_ID +", " + POST_TOPIC + ", "+ POST_MESSAGE + ", " + POST_DATE + ") "
+				+ "VALUES( '" + newPost.getID() + "', '" + newPost.getUserID() + "', '" +newPost.getParentID() + "', '" + newPost.getTopic() + "', '" + newPost.getMessage() + "', '" + newPost.getDate() + "')";
+
 		return statement;
 	}
 	

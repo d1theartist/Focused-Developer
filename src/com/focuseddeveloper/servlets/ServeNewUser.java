@@ -20,7 +20,7 @@ import com.focuseddeveloper.beans.Users;
 import com.focuseddeveloper.database.DB_Helper;
 import com.focuseddeveloper.database.DB_UserData;
 import com.focuseddeveloper.login.HashPasswords;
-import com.focuseddeveloper.servedata.FetchUsersAndPosts;
+import com.focuseddeveloper.servedata.FetchUsers;
 import com.focuseddeveloper.service.Email_UserData;
 
 /**
@@ -53,9 +53,9 @@ public class ServeNewUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		FetchUsersAndPosts fetchUsers;
+		FetchUsers fetchUsers;
 		
-		fetchUsers = new FetchUsersAndPosts();
+		fetchUsers = new FetchUsers();
 		userList =  (ArrayList<Users>) fetchUsers.getUsers();
 		
 		// String access, String email, String password, String name) 

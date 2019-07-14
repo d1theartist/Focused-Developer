@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 import com.focuseddeveloper.beans.Users;
 import com.focuseddeveloper.database.DB_Helper;
 import com.focuseddeveloper.database.DB_UserData;
-import com.focuseddeveloper.servedata.FetchUsersAndPosts;
+import com.focuseddeveloper.servedata.FetchUsers;
 import com.focuseddeveloper.service.Email_UserData;
 
 /**

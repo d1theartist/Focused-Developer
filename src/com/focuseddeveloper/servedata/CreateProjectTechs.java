@@ -72,16 +72,10 @@ public class CreateProjectTechs {
 			int prevTech = 0;
 			int prevProj = 0;
 			
-			//String techTitle;
-			//String techSubtitle;
-			//String projectTitle;
-			//String projectSubtitle;
 			String featureName = null;
 			
 			ProjectTech newProjectTech = null;
 			Project newProject = null;
-			
-		
 			
 			ResultSet results = statement.getResultSet();
 			
