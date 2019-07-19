@@ -53,6 +53,7 @@
 		<section id="secondary" class="borderone">
 		
 			<h2>Recent Updates! 
+			<!-- Link to Post New Message -->
 				<c:url value="/home" var="myURL">
 				<c:param name="page" value="post"/>
 				<c:param name="parentID" value="0"/>
@@ -76,7 +77,7 @@
 				<p>
 				${post.message}
 				</p>
-				
+				<!-- Link to Reply to Top Level Post -->
 				<c:url value="/home" var="replyURL">
 				<c:param name="page" value="post"/>
 				<c:param name="parentID" value="${post.ID}"/>
@@ -100,6 +101,7 @@
 					<p>
 					${reply.message}
 					</p>
+					<!-- Link to Reply to 2nd Level Post, reply to a comment -->
 					<c:url value="/home" var="replyURL2">
 					<c:param name="page" value="post"/>
 					<c:param name="parentID" value="${reply.ID}"/>

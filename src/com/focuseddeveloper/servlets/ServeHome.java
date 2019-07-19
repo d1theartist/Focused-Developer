@@ -97,10 +97,10 @@ public class ServeHome extends HttpServlet {
 							request.setAttribute("title", "Post");
 							request.getRequestDispatcher("post.jsp").forward(request, response);
 						}else {
-							// Invalid Reply
+							System.out.println("Reply is Ineligible for this post.");
 						}
 					}else {
-						// Invalid Reply
+						System.out.println("Parent Post could not be found. ID: "+parentID);
 					}
 				// if this post is not a reply, is the user an admin?
 				}else if(currentUser.getAccess().equals(Users.ACCESS_ADMIN)){
@@ -108,6 +108,7 @@ public class ServeHome extends HttpServlet {
 					request.getRequestDispatcher("post.jsp").forward(request, response);
 				}else {
 					// no access
+					System.out.println("Access Denied.  User: "+currentUser.getName() + " is: "+ currentUser.getAccess() + " cannot create topics.");
 				}
 				
 			}else {

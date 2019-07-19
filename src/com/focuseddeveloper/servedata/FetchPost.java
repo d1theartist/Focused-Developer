@@ -92,7 +92,7 @@ public class FetchPost {
 							results.getInt(DB_Helper.CHILD_PARENT_ID), results.getString(DB_Helper.CHILD_POSTERS_NAME),
 							results.getString(DB_Helper.CHILD_TOPIC), results.getString(DB_Helper.CHILD_MESSAGE),
 							results.getDate(DB_Helper.CHILD_DATE).toLocalDate());
-					newPost.setReplyEligible(true);
+					newChild.setReplyEligible(true);
 					newPost.addReply(newChild);
 				}
 			
