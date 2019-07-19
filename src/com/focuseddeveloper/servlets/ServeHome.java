@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.focuseddeveloper.beans.Post;
 import com.focuseddeveloper.beans.Project;
+import com.focuseddeveloper.beans.Users;
 import com.focuseddeveloper.servedata.CreateProjectTechs;
 import com.focuseddeveloper.servedata.FetchPost;
 import com.mysql.cj.util.StringUtils;
@@ -25,6 +26,8 @@ import com.mysql.cj.util.StringUtils;
 @WebServlet("/home")
 public class ServeHome extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	ArrayList<Post> posts;
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,6 +35,8 @@ public class ServeHome extends HttpServlet {
     public ServeHome() {
         super();
         // TODO Auto-generated constructor stub
+        
+        posts = new ArrayList<Post>();
     }
 
 	/**
@@ -41,9 +46,11 @@ public class ServeHome extends HttpServlet {
 		String page = request.getParameter("page");
 		System.out.println("Testing");
 		
+		
+		
 	
 		
-	//HttpSession session = request.getSession(); 
+		HttpSession session = request.getSession(); 
 	
 
 		switch (page) {
@@ -51,7 +58,7 @@ public class ServeHome extends HttpServlet {
 		case "home":
 			//FetchPost myPost = new FetchPost();
 			selectProjectHighlight( request);
-			getPost(request);
+			getAllPost(request);
 			request.setAttribute("title", "Homepage");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			break;
@@ -74,6 +81,38 @@ public class ServeHome extends HttpServlet {
 		case "signup":
 			request.setAttribute("title", "Signup");
 			request.getRequestDispatcher("signup.jsp").forward(request, response);
+			break;
+		case "post":
+			int parentID = Integer.parseInt(request.getParameter("parentID"));
+			Users currentUser = (Users) session.getAttribute("currentUser");
+			
+			// if a user is logged in
+			if(currentUser != null) {
+				//if this post will be a reply
+				if(parentID != 0) {
+					Post parentPost = getPost(parentID);
+					if(parentPost != null) {
+						if(parentPost.isReplyEligible()) {
+							request.setAttribute("parentPost", parentPost);
+							request.setAttribute("title", "Post");
+							request.getRequestDispatcher("post.jsp").forward(request, response);
+						}else {
+							// Invalid Reply
+						}
+					}else {
+						// Invalid Reply
+					}
+				// if this post is not a reply, is the user an admin?
+				}else if(currentUser.getAccess().equals(Users.ACCESS_ADMIN)){
+					request.setAttribute("title", "Post");
+					request.getRequestDispatcher("post.jsp").forward(request, response);
+				}else {
+					// no access
+				}
+				
+			}else {
+				//Not Logged In
+			}
 			break;
 		default: 
 			request.setAttribute("title", "Not Found");
@@ -111,13 +150,13 @@ public class ServeHome extends HttpServlet {
 		
 	}
 	
-	private void getPost(HttpServletRequest request) {
-		ArrayList<Post> posts = new ArrayList<Post>();
+	private void getAllPost(HttpServletRequest request) {
 		
 		FetchPost fp = new FetchPost();
 		posts = (ArrayList<Post>) fp.getPosts();
 		
 		request.setAttribute("postList", posts);
+		
 		for( Post post: posts) {
 			System.out.println("ID: " +post.getID());
 			System.out.println("User ID: " +post.getUserID());
@@ -125,6 +164,21 @@ public class ServeHome extends HttpServlet {
 			System.out.println("Message: " +post.getMessage());
 		}
 		
+	}
+	
+private Post getPost(int postID) {
+	
+		if(posts.isEmpty()) {
+		FetchPost fp = new FetchPost();
+		posts = (ArrayList<Post>) fp.getPosts();
+		}
+		
+		
+		for( Post post: posts) {
+			if(post.getID() == postID)
+				return post;
+		}
+		return null;
 	}
 
 }

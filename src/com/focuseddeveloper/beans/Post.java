@@ -16,6 +16,8 @@ public class Post {
 	private String message;
 	private LocalDate date;
 	ArrayList<Post> replies;
+	private boolean replyEligible;
+	
 
 	public Post() {
 		this.ID = 0;
@@ -26,6 +28,7 @@ public class Post {
 		this.message = "Post message";
 		this.date = LocalDate.now();
 		this.replies = new ArrayList<Post>();
+		this.replyEligible = false;
 		
 	}
 	
@@ -39,6 +42,7 @@ public class Post {
 		this.message = message;
 		this.date = date;
 		this.replies = new ArrayList<Post>();
+		this.replyEligible = false;
 	}
 
 	public int getID() {
@@ -110,6 +114,14 @@ public class Post {
 			return false;
 		}
 		return true;
+	}
+
+	public boolean isReplyEligible() {
+		return replyEligible;
+	}
+
+	public void setReplyEligible(boolean replyEligible) {
+		this.replyEligible = replyEligible;
 	}
 	
 	
