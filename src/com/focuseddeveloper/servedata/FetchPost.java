@@ -79,7 +79,9 @@ public class FetchPost {
 							results.getInt(DB_Helper.POST_PARENT_ID), results.getString(DB_Helper.POSTERS_NAME),
 							results.getString(DB_Helper.POST_TOPIC), results.getString(DB_Helper.POST_MESSAGE),
 							results.getDate(DB_Helper.POST_DATE).toLocalDate());
+					newPost.setReplyEligible(true);
 					postList.add(newPost);
+					
 					
 				}
 				
@@ -90,8 +92,8 @@ public class FetchPost {
 							results.getInt(DB_Helper.CHILD_PARENT_ID), results.getString(DB_Helper.CHILD_POSTERS_NAME),
 							results.getString(DB_Helper.CHILD_TOPIC), results.getString(DB_Helper.CHILD_MESSAGE),
 							results.getDate(DB_Helper.CHILD_DATE).toLocalDate());
+					newPost.setReplyEligible(true);
 					newPost.addReply(newChild);
-					
 				}
 			
 			currentGrandChildID = results.getInt(DB_Helper.G_CHILDID);
@@ -101,6 +103,7 @@ public class FetchPost {
 						results.getInt(DB_Helper.G_CHILD_PARENT_ID), results.getString(DB_Helper.G_CHILD_POSTERS_NAME),
 						results.getString(DB_Helper.G_CHILD_TOPIC), results.getString(DB_Helper.G_CHILD_MESSAGE),
 						results.getDate(DB_Helper.G_CHILD_DATE).toLocalDate());
+				newGrandChild.setReplyEligible(false);
 				newGrandChild.addReply(newChild);
 				
 			}
@@ -132,5 +135,63 @@ public class FetchPost {
 	public List<Post> getPosts(){
 		return postList;
 	}
+	
+	public boolean addPost(Post newPost) {
+		
+
+		String addPost;
+		
+		try {
+			Class.forName(DB_Helper.JDBC_DRIVER);
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		Connection conn = null;
+		Statement statement= null;
+		addPost = DB_Helper.addPost(newPost);
+		
+		int resultInt = 0;
+		
+		try {
+			System.out.println("Gonna try to connect now.");
+			
+			conn = DriverManager.getConnection(DB_Helper.DB_URL+DB_Helper.DB_NAME, DB_UserData.USER, DB_UserData.PASS);
+			statement = conn.createStatement();
+			String sql = addPost;
+			System.out.println("SQL: "+sql);
+			resultInt = statement.executeUpdate(sql);
+			
+			if(resultInt > 0) {
+				postList.add(newPost);
+				System.out.println("New Post added: " + newPost.getID());
+			}else {
+				System.out.println("Failed to add new post.");
+			}
+			
+		}catch (SQLException e) {
+			System.out.println("SQLException: " + e.getLocalizedMessage() );
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(statement != null)
+					conn.close();
+			}catch(SQLException se) {
+			}
+			try {
+				if(conn != null)
+					conn.close();
+			}catch(SQLException se) {
+			}
+		}
+		
+		if(resultInt > 0)
+			return true;
+		return false;
+	}
+	
+	
 	
 }

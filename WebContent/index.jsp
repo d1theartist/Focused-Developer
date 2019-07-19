@@ -14,11 +14,18 @@
 
 <c:import url="include/topbar.jsp"></c:import>
 
+	<c:set var="title" value="${title}" scope="request"/> 
+    	  <c:if test="${empty title}">  
+    	  	 <c:redirect url="/home?page=home" />
+    	  </c:if>
 
 	<!-- main content -->
 	<div id="wrapper">
 		<section id="primary" class="borderone">
 			<h2>Project Spotlight</h2>
+			
+			
+    	  
 			
 			<h2 id="page-title">${project.title}</h2>
 			<h4 id="subtitle">${project.subtitle}</h4>
@@ -46,15 +53,21 @@
 		<section id="secondary" class="borderone">
 		
 			<h2>Recent Updates! 
+				<c:url value="/home" var="myURL">
+				<c:param name="page" value="post"/>
+				<c:param name="parentID" value="0"/>
+				<c:param name="topic" value="Your Topic"/>
+				</c:url>
 				<c:if test="${empty name}">
 					<a href=${pageContext.request.contextPath}/home?page=login> <i class="far fa-comment-alt" id="message-icon" title='Login in to post!'></i></a>
 				</c:if>
 				<c:if test="${not empty name}">
-					<a href=${pageContext.request.contextPath}/home?page=post> <i class="far fa-comment-alt" id="message-icon" title='Create a new post!'></i></a>
+					<a href=${myURL}> <i class="far fa-comment-alt" id="message-icon" title='Create a new post!'></i></a>
 				</c:if>
 			</h2> 
 				<c:forEach items="${postList}" var="post">
 				<div id="post">
+				<c:set var="parentID" value="${post.ID}" scope="session"></c:set>
 				<h2>${post.topic}</h2>
 				Post by: <i>${post.userName}
 				<fmt:parseDate value = "${post.date}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />
@@ -63,9 +76,23 @@
 				<p>
 				${post.message}
 				</p>
+				
+				<c:url value="/home" var="replyURL">
+				<c:param name="page" value="post"/>
+				<c:param name="parentID" value="${post.ID}"/>
+				<c:param name="topic" value="${post.topic}"/>
+				</c:url>
+				<c:if test="${empty name}">
+					<a href=${pageContext.request.contextPath}/home?page=login> <i class="far fa-comment-alt" id="message-icon" title='Login in to post!'></i></a>
+				</c:if>
+				<c:if test="${not empty name}">
+					<a href=${replyURL}> <i class="far fa-comment-alt" id="message-icon" title='Click here to reply.'></i></a>
+				</c:if>
+				
 				<br>
 					<c:forEach items="${post.replies}" var="reply">
 					<div id="postreply">
+					<c:set var="parentID" value="${reply.ID}" scope="session"></c:set>
 					Comment by: <i>${reply.userName}
 					<fmt:parseDate value = "${reply.date}" pattern="yyyy-MM-dd" var="parsedReplyDate" type="date" />
 					<fmt:formatDate type = "date" value = "${parsedReplyDate}" dateStyle="medium" />
@@ -73,9 +100,21 @@
 					<p>
 					${reply.message}
 					</p>
+					<c:url value="/home" var="replyURL2">
+					<c:param name="page" value="post"/>
+					<c:param name="parentID" value="${reply.ID}"/>
+					<c:param name="topic" value="${reply.topic}"/>
+					</c:url>
+					<c:if test="${empty name}">
+						<a href=${pageContext.request.contextPath}/home?page=login> <i class="far fa-comment-alt" id="message-icon" title='Login in to post!'></i></a>
+					</c:if>
+					<c:if test="${not empty name}">
+						<a href=${replyURL2}> <i class="far fa-comment-alt" id="message-icon" title='Click here to reply.'></i></a>
+					</c:if>
 					</br>
 						<c:forEach items="${reply.replies}" var="reply2">
 						<div id="replytwo">
+						<c:set var="parentID" value="${post.ID}" scope="session"></c:set>
 						Comment by: <i>${reply2.userName}
 						<fmt:parseDate value = "${reply2.date}" pattern="yyyy-MM-dd" var="parsedReplyDate2" type="date" />
 						<fmt:formatDate type = "date" value = "${parsedReplyDate2}" dateStyle="medium" />

@@ -1,5 +1,6 @@
 package com.focuseddeveloper.database;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.focuseddeveloper.beans.Users;
@@ -39,7 +40,7 @@ public class DB_Helper {
 	public static final String USER_SALT = "user_salt";
 	public static final String USER_NAME = "user_name";
 	
-	public static final String POSTS_TABLE_TEST = "posts_tests";
+	public static final String POSTS_TABLE_TEST = "posts_test";
 	public static final String POSTS_TABLE = "posts";
 	public static final String POST_ID = "post_id";
 	public static final String POSTERS_ID = "posters_id";
@@ -66,6 +67,7 @@ public class DB_Helper {
 				+ "PRIMARY KEY (" + POST_ID + "))";
 		return statement;
 	}
+	
 	
 	public static String queryPostTable() { 
 		String statement = "SELECT main.post_id, main.posters_id, main.post_parent_id, main.posters_name, main.post_topic, main.post_message, main.post_date, \r\n" + 
@@ -107,8 +109,8 @@ public class DB_Helper {
 	
 	public static String addPost(Post newPost) {
 		String statement;
-		statement = "INSERT INTO " + POSTS_TABLE_TEST + "(" + POST_ID + ", " + POSTERS_ID + ", " + POST_PARENT_ID +", " + POST_TOPIC + ", "+ POST_MESSAGE + ", " + POST_DATE + ") "
-				+ "VALUES( '" + newPost.getID() + "', '" + newPost.getUserID() + "', '" +newPost.getParentID() + "', '" + newPost.getTopic() + "', '" + newPost.getMessage() + "', '" + newPost.getDate() + "')";
+		statement = "INSERT INTO " + POSTS_TABLE_TEST + "( " + POSTERS_ID + ", " + POST_PARENT_ID +", "+ POSTERS_NAME +", " + POST_TOPIC + ", "+ POST_MESSAGE + ") "
+				+ "VALUES( '" + newPost.getUserID() + "', '" +newPost.getParentID() + "', '"+newPost.getUserName() + "', '" + newPost.getTopic() + "', '" + newPost.getMessage() + "')";
 
 		return statement;
 	}
@@ -145,7 +147,7 @@ public class DB_Helper {
 	
 	public static String queryUserTableForEmail(String email) {
 		String statement;
-		statement = "SELECT * from " + USERS_TABLE + " where " + USER_EMAIL + " = \"" + email + "\"";
+		statement = "SELECT * from " + USERS_TABLE + " where " +  USER_EMAIL + " = \"" + email + "\"";
 		
 		return statement;
 	}

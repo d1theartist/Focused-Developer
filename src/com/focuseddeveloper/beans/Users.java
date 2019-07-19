@@ -15,7 +15,7 @@ public class Users {
 	
 	public Users() {
 		ID = 0;
-		access = "Guest";
+		access = ACCESS_GUEST;
 		email = "NA";
 		password = "NA";
 		name = "Guest";

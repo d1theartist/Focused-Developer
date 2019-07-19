@@ -76,6 +76,7 @@ public class LoginServlet extends HttpServlet {
 			
 			if(HashPasswords.verifyPassword(userPassword, userAccount.getPassword(),  userAccount.getSalt())) {
 				System.out.println("login success!");
+				session.setAttribute("currentUser", userAccount);
 				session.setAttribute("userEmail", userAccount.getEmail());
 				session.setAttribute("userName", userAccount.getName());
 				session.setAttribute("access", userAccount.getAccess());
