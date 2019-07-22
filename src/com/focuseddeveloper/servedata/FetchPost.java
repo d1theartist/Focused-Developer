@@ -104,7 +104,7 @@ public class FetchPost {
 						results.getString(DB_Helper.G_CHILD_TOPIC), results.getString(DB_Helper.G_CHILD_MESSAGE),
 						results.getDate(DB_Helper.G_CHILD_DATE).toLocalDate());
 				newGrandChild.setReplyEligible(false);
-				newGrandChild.addReply(newChild);
+				newChild.addReply(newGrandChild);
 				
 			}
 			

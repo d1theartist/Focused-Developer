@@ -169,6 +169,7 @@ public class ServeHome extends HttpServlet {
 	
 private Post getPost(int postID) {
 	
+	
 		if(posts.isEmpty()) {
 		FetchPost fp = new FetchPost();
 		posts = (ArrayList<Post>) fp.getPosts();
@@ -176,8 +177,22 @@ private Post getPost(int postID) {
 		
 		
 		for( Post post: posts) {
-			if(post.getID() == postID)
+			if(post.getID() == postID) {
 				return post;
+			}
+			
+			for( Post reply: post.getReplies()) {
+				if(reply.getID() == postID) {
+					return reply;
+				}
+				
+				for( Post comment: reply.getReplies()) {
+					if(comment.getID() == postID) {
+						return comment;
+					}
+				}
+			}
+				
 		}
 		return null;
 	}
