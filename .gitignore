@@ -4,3 +4,5 @@ WebContent/META-INF/context.html
 /build/
 src/com/focuseddeveloper/database/DB_UserData.java
 /target/
+
+src/com/focuseddeveloper/service/Email_UserData.java
